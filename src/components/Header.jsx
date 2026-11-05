@@ -1,6 +1,6 @@
 import { Ellipsis, LayoutGridCircles } from "lucide-react";
 
-// import ButtonGroup from "./ButtonGroup";
+import ButtonGroup from "./ButtonGroup";
 import Button from "./Button.jsx";
 // import { useState } from "react";
 
@@ -28,11 +28,11 @@ export default function Header({openMenu, title, openAboutProject}){
             </div>
             <div className="flex flex-row justify-end w-[50%] gap-2 mr-5">
 
-                <Button onClick={openMenu} icon={Ellipsis} />
-                {/* <ButtonGroup*/}
-                {/*     onClick={openMenu}*/}
-                {/*     icons={[{icon: LayoutGridCircles}, {icon: Ellipsis, action: openMenu}]}*/}
-                {/* />*/}
+                {/*<Button onClick={openMenu} icon={Ellipsis} />*/}
+                 <ButtonGroup
+                     onClick={openMenu}
+                     icons={[{icon: LayoutGridCircles}, {icon: Ellipsis, action: openMenu}]}
+                 />
             </div>
         </header>
     )
