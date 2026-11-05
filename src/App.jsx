@@ -5,11 +5,13 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 
 function App() {
-  
+  const [characterInfo, setCharacterInfo] = useState([]);
+  const [villageInfo, setVillageInfo] = useState([])
+
 
   return (
     <>
-
+      <p className={"text-white"}>I like cats</p>
     </>
   )
 }
