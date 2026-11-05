@@ -3,8 +3,9 @@
 body {
   	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	/* font-family: Nunito; */
-	background-color: rgb(255, 245, 223);
+	/*background-color: rgb(255, 245, 223);*/
 	 /* background-color: rgb(240, 240, 240); */
+	background-color: #ffdcc6;
 
 }
 
@@ -34,8 +35,7 @@ header::before {
 
 @media (prefers-color-scheme: dark) {
 	body {
-		background-color: rgb(15, 15, 15);
-		background-color: rgb(25, 0, 66);
+		background-color: #3d1700;
 	}
 
 	.textglow {
