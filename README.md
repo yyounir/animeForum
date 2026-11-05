@@ -1,4 +1,4 @@
-# Web Development Final Project - *Ninjutsu Forums*
+# Web Development Final Project - *Ninjutsu Lists*
 
 Submitted by: **Yasir Younus**
 
