@@ -1,4 +1,4 @@
-# Web Development Final Project - *Ninjutsu Lists*
+# Web Development Final Project - *AnimeCorner*
 
 Submitted by: **Yasir Younus**
 
