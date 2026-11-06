@@ -23,7 +23,7 @@ export default function Header({openMenu, title, openAboutProject}){
                     src="/logo.png"
                     alt="Logo"
                     width="300"
-                    className="textglow font-semibold text-2xl textglow ml-1 dark:text-white"/>
+                    className="textglow font-semibold text-2xl textglow ml-1 dark:text-white drop-shadow-2xl"/>
 
                 {/*<p className="font-semibold text-2xl textglow ml-1 dark:text-white">{title}</p>*/}
             </div>

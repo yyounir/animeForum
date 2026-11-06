@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import {BrowserRouter, Routes, Route} from "react-router";
 import Explore from "./routes/Explore.jsx";
+import NotFound from "./routes/NotFound.jsx";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,6 +17,8 @@ createRoot(document.getElementById('root')).render(
           <Route path={"/viewEntry/:id"} />
           <Route path={"/explore"} element={<Explore/>} />
         </Route>
+        <Route path={"/viewAnime/:id"} />
+        <Route path={"*"} element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
