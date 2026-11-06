@@ -62,13 +62,21 @@ export default function Explore(){
     });
 
     const { data } = await response.json();
-    console.log(data)
-    return data.Page.media;
+    // console.log(data.Page.media)
+
+    data.Page.media.map((anime) => {
+      // console.log(anime)
+      setAnimeList([...animeList, anime])
+    })
+
+
   }
 
   useEffect(() => {
     fetchExploreAnime().catch((error) => (console.error(error)));
   }, []);
+
+
 
   return(
       <div className={"flex flex-col items-center select-none animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards]"}>
@@ -77,6 +85,13 @@ export default function Explore(){
         <Card title={"Explore some Anime!"}>
           <p>I like cats</p>
         </Card>
+
+        {animeList.map((anime) => (
+          <Card title={anime.title}>
+            <p>I like cats</p>
+          </Card>
+        ))
+        }
 
       </div>
   )
