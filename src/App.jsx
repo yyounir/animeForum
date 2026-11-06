@@ -48,7 +48,7 @@ function App() {
 
   const openAboutProject = () => {
     setModalTile("About this Project")
-    setModalText(["Ninjutsu Lists", "Project made by Yasir Y."])
+    setModalText(["AnimeCorner", "Project made by Yasir Y."])
     setIsModalMounted(true)
     setIsModalOpen(true)
     setModalActions([{
@@ -84,7 +84,7 @@ function App() {
 
   return (
     <>
-      <Header title={"Ninjutsu Forums"} openMenu={openMenu} />
+      <Header title={"AnimeCorner"} openMenu={openMenu} />
 
       {isMenuMounted && (
         <Menu

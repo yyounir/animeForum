@@ -62,14 +62,7 @@ export default function Explore(){
     });
 
     const { data } = await response.json();
-    // console.log(data.Page.media)
-
-    data.Page.media.map((anime) => {
-      // console.log(anime)
-      setAnimeList([...animeList, anime])
-    })
-
-
+    setAnimeList(data.Page.media);
   }
 
   useEffect(() => {
@@ -77,21 +70,19 @@ export default function Explore(){
   }, []);
 
 
-
   return(
       <div className={"flex flex-col items-center select-none animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards]"}>
         <h1 className={"font-semibold dark:text-white text-4xl flex gap-2.5 mb-4"}><TelescopeIcon className={"size-10.5"} />Explore</h1>
 
-        <Card title={"Explore some Anime!"}>
-          <p>I like cats</p>
-        </Card>
+        <div className={"gap-5 px-25 flex justify-center items-center flex-wrap"}>
+          {animeList.map((anime, index) => (
+            <div key={index}>
+              <Card className={`w-90`} image={anime.coverImage.large} title={anime.title.english}>
 
-        {animeList.map((anime) => (
-          <Card title={anime.title}>
-            <p>I like cats</p>
-          </Card>
-        ))
-        }
+              </Card>
+            </div>
+          ))}
+        </div>
 
       </div>
   )
