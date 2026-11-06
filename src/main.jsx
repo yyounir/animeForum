@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import {BrowserRouter, Routes, Route} from "react-router";
+import Explore from "./routes/Explore.jsx";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -13,7 +14,7 @@ createRoot(document.getElementById('root')).render(
           <Route path={"/createEntry"} />
           <Route path={"/editEntry/:id"} />
           <Route path={"/viewEntry/:id"} />
-          <Route path={"/explore"} />
+          <Route path={"/explore"} element={<Explore/>} />
         </Route>
       </Routes>
     </BrowserRouter>

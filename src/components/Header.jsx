@@ -1,4 +1,4 @@
-import { Ellipsis, LayoutGridCircles } from "lucide-react";
+import {Ellipsis, FormIcon, LayoutGridCircles, TelescopeIcon} from "lucide-react";
 
 import ButtonGroup from "./ButtonGroup";
 import Button from "./Button.jsx";
@@ -28,7 +28,10 @@ export default function Header({openMenu, title, openAboutProject}){
                 {/*<p className="font-semibold text-2xl textglow ml-1 dark:text-white">{title}</p>*/}
             </div>
             <div className="flex flex-row justify-end w-[50%] gap-2 mr-5">
-
+                <ButtonGroup
+                     onClick={openMenu}
+                     icons={[{icon: TelescopeIcon, text:"Explore"}, {icon: FormIcon, text:"Forum"}]}
+                 />
                 {/*<Button onClick={openMenu} icon={Ellipsis} />*/}
                  <ButtonGroup
                      onClick={openMenu}

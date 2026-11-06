@@ -8,6 +8,7 @@ import {GitHubIcon} from "./components/GitHubIcon.jsx";
 import {InfoIcon} from "lucide-react";
 import Modal from "./components/Modal.jsx";
 import Menu from "./components/Menu.jsx";
+import {Outlet} from "react-router";
 
 function App() {
   // Modal
@@ -107,7 +108,7 @@ function App() {
       )}
 
       <div className={"mt-20"}>
-        <p className={"dark:text-white"}>I like cats</p>
+        <Outlet />
       </div>
     </>
   )
