@@ -78,8 +78,7 @@ function App() {
 
 
 
-  const [characterInfo, setCharacterInfo] = useState([]);
-  const [villageInfo, setVillageInfo] = useState([])
+
 
 
 
