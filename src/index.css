@@ -6,8 +6,9 @@ body {
 	/*background-color: rgb(255, 245, 223);*/
 	 /* background-color: rgb(240, 240, 240); */
 	/*background-color: #ffdcc6;*/
-    background: linear-gradient(45deg, rgb(231 0 11 / 0.5), rgb(255 136 3 / 0.5));
 
+    background: linear-gradient(45deg, rgb(231 0 11 / 0.25), rgb(255 136 3 / 0.5));
+    background-color: white;
 }
 
 /* Apply the glass effect to this virtual layer instead */
