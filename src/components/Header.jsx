@@ -16,7 +16,7 @@ export default function Header({openMenu, title, openAboutProject}){
 
     return (
         <header className="py-3 flex flex-row
-         items-center justify-start 
+         items-center justify-start backdrop-blur-lg
         fixed top-0 left-0 z-10000 w-full select-none">
             <div className="flex flex-row ml-5 w-[50%] gap-2 items-center ">
                 <img
@@ -30,7 +30,7 @@ export default function Header({openMenu, title, openAboutProject}){
             <div className="flex flex-row justify-end w-[50%] gap-2 mr-5">
                 <ButtonGroup
                      onClick={openMenu}
-                     icons={[{icon: TelescopeIcon, text:"Explore"}, {icon: FormIcon, text:"Forum"}]}
+                     icons={[{icon: TelescopeIcon, text:"Explore", to:"explore"}, {icon: FormIcon, text:"Forum", to:"/"}]}
                  />
                 {/*<Button onClick={openMenu} icon={Ellipsis} />*/}
                  <ButtonGroup

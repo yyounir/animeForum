@@ -1,6 +1,7 @@
 import {Ellipsis, FormIcon, LayoutGridCircles, TelescopeIcon} from "lucide-react";
 import Card from "../components/Card.jsx";
 import {useState, useEffect} from "react";
+import {Link} from "react-router";
 
 export default function Explore(){
 
@@ -63,6 +64,7 @@ export default function Explore(){
 
     const { data } = await response.json();
     setAnimeList(data.Page.media);
+    console.log(data.Page.media)
   }
 
   useEffect(() => {
@@ -76,11 +78,11 @@ export default function Explore(){
 
         <div className={"gap-5 flex justify-center items-center flex-wrap bg-red"}>
           {animeList.map((anime, index) => (
-            <div key={index}>
+            <Link to={`/explore/${anime.id}`} key={index}>
               <Card className={`w-90`} image={anime.coverImage.large} title={anime.title.english}>
                 <p className={"pb-5"}>{anime.startDate.year}</p>
               </Card>
-            </div>
+            </Link>
           ))}
         </div>
 
