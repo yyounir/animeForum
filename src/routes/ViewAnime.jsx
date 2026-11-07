@@ -1,76 +1,103 @@
 import {useParams} from "react-router";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export default function ViewAnime(){
-  const id = useParams();
-
-const query = `
-  query ($page: Int, $perPage: Int, $sort: [MediaSort]) {
-    Page(page: $page, perPage: $perPage) {
-      pageInfo {
-        hasNextPage
-        currentPage
-      }
-      media(type: ANIME, sort: $sort) {
-        id
-        title {
-          romaji
-          english
-          native
-        }
-        coverImage {
-          large
-          color
-        }
-        bannerImage
-        description(asHtml: false)
-        format
-        status
-        episodes
-        duration
-        genres
-        averageScore
-        popularity
-        nextAiringEpisode {
-          airingAt
-          timeUntilAiring
-          episode
-        }
-        startDate {
-          year
-          month
-          day
-        }
-      }
-    }
-  }
-`;
-
-  async function fetchExploreAnime(page = 1, sort = ['TRENDING_DESC']) {
-    const response = await fetch('https://graphql.anilist.co', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        query,
-        variables: { page, perPage: 20, sort }
-      })
-    });
-
-    const { data } = await response.json();
-    setAnimeList(data.Page.media);
-    console.log(data.Page.media)
-  }
+  const {id} = useParams();
+  const animeId = Number(id);
+  const [animeContent, setAnimeContent] = useState([]);
 
   useEffect(() => {
-    fetchExploreAnime().catch((error) => (console.error(error)));
-  }, []);
+    const query = `
+      query ($id: Int!) {
+        Media(id: $id, type: ANIME) {
+          id
+          title {
+            romaji
+            english
+            native
+          }
+          coverImage {
+            large
+            color
+          }
+          bannerImage
+          description(asHtml: false)
+          format
+          status
+          episodes
+          duration
+          genres
+          averageScore
+          popularity
+          nextAiringEpisode {
+            airingAt
+            timeUntilAiring
+            episode
+          }
+          startDate {
+            year
+            month
+            day
+          }
+        }
+      }
+    `;
+
+    async function fetchAnime() {
+      if (!Number.isSafeInteger(animeId) || animeId <= 0) {
+        console.error(`Invalid anime ID: ${id}`);
+        return;
+      }
+
+      const response = await fetch('https://graphql.anilist.co', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+          variables: { id: animeId }
+        })
+      });
+
+      const { data, errors } = await response.json();
+
+      if (!response.ok || errors) {
+        throw new Error(
+          `AniList request failed with status ${response.status}: ${JSON.stringify(errors)}`
+        );
+      }
+
+      console.log(data.Media);
+      setAnimeContent(data.Media);
+    }
+
+    fetchAnime().catch((error) => console.error(error));
+  }, [animeId, id]);
 
   return (
-  <div>
-    I like cats
-  </div>
+    <div className="relative h-screen w-full overflow-hidden text-white bg-slate-900">
+      <div
+        style={{ backgroundImage: `url(${animeContent?.coverImage?.large})` }}
+        className="absolute inset-0 bg-cover bg-center blur-md scale-105 pointer-events-none opacity-50"
+      />
+
+      <div className="relative z-10 flex h-full w-full justify-center items-center gap-8 p-6">
+        <img
+          className="rounded-3xl shadow-2xl max-h-[70vh] object-cover"
+          src={animeContent?.coverImage?.large}
+          alt={animeContent?.title?.english || "Cover"}
+        />
+
+        <div className="space-y-2 drop-shadow-md">
+          <h1 className="text-4xl font-semibold">{animeContent?.title?.english}</h1>
+          <p className="text-xl font-semibold text-gray-200">{animeContent?.title?.romaji}</p>
+          <p className="text-xl font-bold text-gray-300">{animeContent?.title?.native}</p>
+        </div>
+
+
+      </div>
+    </div>
   )
 }
