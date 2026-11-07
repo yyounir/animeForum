@@ -2,6 +2,7 @@ import anime1 from "../assets/Anime.png"
 import anime2 from "../assets/Anime1.png"
 import Button from "../components/Button.jsx";
 import {ArrowRightIcon} from "lucide-react";
+import {Link} from "react-router";
 
 export default function Home(){
   return (
@@ -20,9 +21,17 @@ export default function Home(){
           <h1 className={"text-7xl dark:text-white"}>Gain <span className={"font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600 dark:to-yellow-500"}>power levels</span></h1>
           <h1 className={"text-7xl dark:text-white"}>Explore new <span className={"font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600 dark:to-yellow-500"}>ninjutsu</span></h1>
           <p className={"text-xl mt-4 dark:text-white"}>Check out the top 50 trending animes that people are watching now!</p>
-          <div className={"text-md mt-3"}><Button value={"Explore"} rightIcon={ArrowRightIcon} /></div>
+          <Link to={"/explore"}><div className={"text-md mt-3"}><Button value={"Explore"} rightIcon={ArrowRightIcon} /></div></Link>
         </div>
         <img src={anime2} className={"w-350 mt-10 m-5"} />
+
+        <div className={"mt-35"}>
+          <h1 className={"text-7xl dark:text-white"}>Join the <span className={"font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600 dark:to-yellow-500"}>crew</span></h1>
+          <h1 className={"text-7xl dark:text-white"}>In finding <span className={"font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600 dark:to-yellow-500"}>the One Piece!</span></h1>
+          <p className={"text-xl mt-4 dark:text-white"}>Check out the forum to see what other people think about the anime they watched!</p>
+          <Link to={"/forum"}><div className={"text-md mt-3"}><Button value={"Head to the Forum"} rightIcon={ArrowRightIcon} /></div></Link>
+        </div>
+        {/*<img src={anime2} className={"w-350 mt-10 m-5"} />*/}
       </div>
     </div>
   )
