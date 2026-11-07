@@ -21,7 +21,7 @@ export default function HeaderAlt({openMenu, title}){
                 {/*<Link to={"/"}><Button icon={ArrowLeft} /></Link>*/}
                 <ButtonGroup
                    onClick={openMenu}
-                   icons={[{icon: ArrowLeft, to: "/"}]}
+                   icons={[{icon: ArrowLeft, to: "/explore"}]}
                 />
                 <p className="font-semibold text-2xl textglow ml-1  text-black dark:text-white mb-1 ">{title}</p>
             </div>
