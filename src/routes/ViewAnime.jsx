@@ -144,7 +144,7 @@ export default function ViewAnime(){
           {animeContent.startDate ?
             <CardAlt className={"w-50 p-5"}>
               <p className={"font-bold"}>Start Date</p>
-              <p>{animeContent.startDate?.month} / {animeContent.startDate?.day} / {animeContent.startDate?.year}</p>
+              <p>{animeContent.startDate?.month}/{animeContent.startDate?.day}/{animeContent.startDate?.year}</p>
             </CardAlt> : ""
           }
           {animeContent.status ?
