@@ -17,7 +17,9 @@ createRoot(document.getElementById('root')).render(
           <Route path={"/editEntry/:id"} />
           <Route path={"/viewEntry/:id"} />
           <Route path={"/explore"} element={<Explore/>} />
+
         </Route>
+
         <Route path={"/explore/:id"} element={<ViewAnime/>} />
         <Route path={"*"} element={<NotFound/>} />
       </Routes>

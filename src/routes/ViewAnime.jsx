@@ -81,13 +81,13 @@ export default function ViewAnime(){
     <div className="relative h-screen w-full overflow-hidden text-white bg-slate-900">
       <div
         style={{ backgroundImage: `url(${animeContent?.coverImage?.large})` }}
-        className="absolute inset-0 bg-cover bg-center blur-md scale-105 pointer-events-none opacity-50  animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]"
+        className="absolute inset-0 bg-cover bg-center blur-md scale-105 pointer-events-none opacity-50 animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]"
       />
 
       <HeaderAlt title={animeContent?.title?.english} />
 
 
-      <div className="relative z-10 flex h-full w-full justify-center items-center gap-8 p-6">
+      <div className="relative z-10 flex h-full w-full justify-center items-center gap-8 p-6 animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]">
         <img
           className="rounded-3xl shadow-2xl max-h-[70vh] object-cover"
           src={animeContent?.coverImage?.large}
