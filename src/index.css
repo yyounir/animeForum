@@ -5,7 +5,8 @@ body {
 	/* font-family: Nunito; */
 	/*background-color: rgb(255, 245, 223);*/
 	 /* background-color: rgb(240, 240, 240); */
-	background-color: #ffdcc6;
+	/*background-color: #ffdcc6;*/
+    background: linear-gradient(45deg, rgb(231 0 11 / 0.5), rgb(255 136 3 / 0.5));
 
 }
 
@@ -35,7 +36,9 @@ header::before {
 
 @media (prefers-color-scheme: dark) {
 	body {
-		background-color: #3d1700;
+		/*background-color: #3d1700;*/
+        background-color: black;
+        /*background: linear-gradient(45deg, rgb(231 0 11 / 0.5), rgb(255 136 3 / 0.5));*/
 	}
 
 	.textglow {

@@ -120,19 +120,19 @@ export default function ViewAnime(){
           {animeContent.duration ?
             <CardAlt className={"w-50 p-5 text-black dark:text-white"}>
               <p className={"font-bold"}>Duration</p>
-              <p>{animeContent.duration}</p>
+              <p>{animeContent.duration} minutes</p>
             </CardAlt> : ""
           }
           {animeContent.averageScore ?
             <CardAlt className={"w-50 p-5 text-black dark:text-white"}>
               <p className={"font-bold"}>Average Score</p>
-              <p>{animeContent.averageScore}</p>
+              <p>{animeContent.averageScore}%</p>
             </CardAlt> : ""
           }
           {animeContent.episodes ?
             <CardAlt className={"w-50 p-5 text-black dark:text-white"}>
               <p className={"font-bold"}>Episodes</p>
-              <p>{animeContent.episodes}</p>
+              <p>{animeContent.episodes} episodes</p>
             </CardAlt> : ""
           }
           {animeContent.popularity ?

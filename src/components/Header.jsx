@@ -25,7 +25,7 @@ export default function Header({openMenu, title, openAboutProject}){
                     src="/logo.png"
                     alt="Logo"
                     width="300"
-                    className="textglow font-semibold text-2xl textglow ml-1 dark:text-white drop-shadow-2xl animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards]"/>
+                    className="hover:scale-101 active:scale-103 transition-all textglow font-semibold text-2xl textglow ml-1 dark:text-white drop-shadow-2xl animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards]"/>
               </Link>
                 {/*<p className="font-semibold text-2xl textglow ml-1 dark:text-white">{title}</p>*/}
             </div>
