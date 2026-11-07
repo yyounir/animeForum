@@ -1,9 +1,10 @@
 export default function Home(){
   return (
     <div className={"animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] flex justify-center"}>
-      <div className={"flex flex-col text-4xl"}>
-        <h1>Discover Anime</h1>
-        <h1>Make some connections</h1>
+      <div className={"flex flex-col text-7xl font-semibold mt-10"}>
+        <h1>Discover <span className={"font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600"}>Anime</span></h1>
+        <h1>Make some <span className={"font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600"}>connections</span></h1>
+        <p className={"text-xl"}>Ever wanted to watch anime for the first time? You've come to the perfect place!</p>
       </div>
     </div>
   )
