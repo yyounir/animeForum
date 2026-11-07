@@ -12,11 +12,10 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path={"/"} element={<App/>}>
-          <Route path={"/"} />
           <Route path={"/createEntry"} />
           <Route path={"/editEntry/:id"} />
           <Route path={"/viewEntry/:id"} />
-          <Route path={"/explore"} element={<Explore/>} />
+          <Route path={"/"} element={<Explore/>} />
 
         </Route>
 

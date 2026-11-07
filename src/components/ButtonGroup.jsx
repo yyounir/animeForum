@@ -9,7 +9,7 @@ export default function ButtonGroup({ icons, onClick }) {
         dark:border-white/10 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35 dark:active:bg-black/50
         ">
             {icons.map(({ icon: Icon, action, text, to }, index) => (
-                <Link to={to ? `/${to}` : null}>
+                <Link to={to ? `/${to}` : null} key={index}>
                     <button
                         type="button"
                         onClick={action}

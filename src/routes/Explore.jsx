@@ -58,7 +58,7 @@ export default function Explore(){
       },
       body: JSON.stringify({
         query,
-        variables: { page, perPage: 20, sort }
+        variables: { page, perPage: 50, sort }
       })
     });
 
@@ -79,7 +79,7 @@ export default function Explore(){
         <div className={"gap-5 flex justify-center items-center flex-wrap bg-red"}>
           {animeList.map((anime, index) => (
             <Link to={`/explore/${anime.id}`} key={index}>
-              <Card className={`w-90`} image={anime.coverImage.large} title={anime.title.english}>
+              <Card className={`w-90`} image={anime.coverImage.large} title={anime.title.english} onClick={"o"}>
                 <p className={"pb-5"}>{anime.startDate.year}</p>
               </Card>
             </Link>

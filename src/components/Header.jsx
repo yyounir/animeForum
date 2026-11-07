@@ -30,7 +30,7 @@ export default function Header({openMenu, title, openAboutProject}){
             <div className="flex flex-row justify-end w-[50%] gap-2 mr-5  animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards]">
                 <ButtonGroup
                      onClick={openMenu}
-                     icons={[{icon: TelescopeIcon, text:"Explore", to:"explore"}, {icon: FormIcon, text:"Forum", to:"/"}]}
+                     icons={[{icon: TelescopeIcon, text:"Explore", to:"/"}, {icon: FormIcon, text:"Forum", to:"/"}]}
                  />
                 {/*<Button onClick={openMenu} icon={Ellipsis} />*/}
                  <ButtonGroup
