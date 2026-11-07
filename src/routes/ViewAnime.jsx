@@ -98,15 +98,15 @@ export default function ViewAnime(){
           />
 
           <div className="space-y-2 drop-shadow-md">
-            <h1 className="drop-shadow-[0_0_10px_rgba(0,0,0,1)] text-4xl font-semibold">{animeContent?.title?.english}</h1>
-            <p className="drop-shadow-[0_0_10px_rgba(0,0,0,1)] text-xl font-semibold text-gray-200">{animeContent?.title?.romaji}</p>
-            <p className="drop-shadow-[0_0_10px_rgba(0,0,0,1)] text-xl font-bold text-gray-300">{animeContent?.title?.native}</p>
+            <h1 className="drop-shadow-[0_0_10px_rgba(255,255,255,1)] dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] text-4xl font-semibold text-black dark:text-white">{animeContent?.title?.english}</h1>
+            <p className="drop-shadow-[0_0_10px_rgba(255,255,255,1)] dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] text-xl font-semibold text-black dark:text-white">{animeContent?.title?.romaji}</p>
+            <p className="drop-shadow-[0_0_10px_rgba(255,255,255,1)] dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] text-xl font-bold text-black dark:text-white">{animeContent?.title?.native}</p>
             {/*<p className={"w-250 drop-shadow-[0_0_10px_rgba(0,0,0,1)]"}>{animeContent.description}</p>*/}
 
             <div className={"flex gap-1.5"}>
-            {animeContent?.genres?.map((element) => (
-              <p className={`drop-shadow-[0_0_10px_rgba(255,255,255,1)] transtion-all animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] select-none  items-center hover:scale-101 transition-all border-white/30 bg-white/20 backdrop-blur-xs border shadow-lg text-center hover:bg-white/35
-               px-2.5 py-0.5 rounded-3xl
+            {animeContent?.genres?.map((element, index) => (
+              <p key={index} className={`drop-shadow-[0_0_10px_rgba(255,255,255,1)] transtion-all animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] select-none  items-center hover:scale-101 transition-all border-white/30 bg-white/20 backdrop-blur-xs border shadow-lg text-center hover:bg-white/35
+               px-2.5 py-0.5 rounded-3xl text-black dark:text-white
                dark:border-white/10 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35`}>
                 {element}
               </p>
@@ -118,37 +118,37 @@ export default function ViewAnime(){
 
         <div className={"flex justify-center items-center flex-wrap gap-5 pb-10"}>
           {animeContent.duration ?
-            <CardAlt className={"w-50 p-5"}>
+            <CardAlt className={"w-50 p-5 text-black dark:text-white"}>
               <p className={"font-bold"}>Duration</p>
               <p>{animeContent.duration}</p>
             </CardAlt> : ""
           }
           {animeContent.averageScore ?
-            <CardAlt className={"w-50 p-5"}>
+            <CardAlt className={"w-50 p-5 text-black dark:text-white"}>
               <p className={"font-bold"}>Average Score</p>
               <p>{animeContent.averageScore}</p>
             </CardAlt> : ""
           }
           {animeContent.episodes ?
-            <CardAlt className={"w-50 p-5"}>
+            <CardAlt className={"w-50 p-5 text-black dark:text-white"}>
               <p className={"font-bold"}>Episodes</p>
               <p>{animeContent.episodes}</p>
             </CardAlt> : ""
           }
           {animeContent.popularity ?
-            <CardAlt className={"w-50 p-5"}>
+            <CardAlt className={"w-50 p-5 text-black dark:text-white"}>
               <p className={"font-bold"}>Popularity</p>
               <p>{animeContent.popularity} people</p>
             </CardAlt> : ""
           }
           {animeContent.startDate ?
-            <CardAlt className={"w-50 p-5"}>
+            <CardAlt className={"w-50 p-5 text-black dark:text-white"}>
               <p className={"font-bold"}>Start Date</p>
               <p>{animeContent.startDate?.month}/{animeContent.startDate?.day}/{animeContent.startDate?.year}</p>
             </CardAlt> : ""
           }
           {animeContent.status ?
-            <CardAlt className={"w-50 p-5"}>
+            <CardAlt className={"w-50 p-5 text-black dark:text-white"}>
               <p className={"font-bold"}>Status</p>
               <p>{animeContent.status}</p>
             </CardAlt> : ""

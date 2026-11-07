@@ -23,7 +23,7 @@ export default function HeaderAlt({openMenu, title}){
                    onClick={openMenu}
                    icons={[{icon: ArrowLeft, to: "/"}]}
                 />
-                <p className="font-semibold text-2xl textglow ml-1 dark:text-white mb-1 ">{title}</p>
+                <p className="font-semibold text-2xl textglow ml-1  text-black dark:text-white mb-1 ">{title}</p>
             </div>
             <div className="flex flex-row justify-end w-[50%] gap-2 mr-5">
                 {/* <input
