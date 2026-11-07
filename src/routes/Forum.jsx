@@ -4,6 +4,32 @@ import Card from "../components/Card.jsx";
 import Input from "../components/Input.jsx";
 
 export default function Forum(){
+
+  // Modal
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalMounted, setIsModalMounted] = useState(false)
+  const [modalTitle, setModalTile] = useState("")
+  const [modalText, setModalText] = useState("")
+  const [modalActions, setModalActions] = useState([{
+    primary: "OK",
+    primaryOnClick: () => setIsModalOpen(false),
+    secondary: "Cancel",
+    secondaryOnClick: () => setIsModalOpen(false),
+  }])
+
+  const openCreatePost = () => {
+    setModalTile("About this Project")
+    setModalText(["AnimeCorner", "Project made by Yasir Y."])
+    setIsModalMounted(true)
+    setIsModalOpen(true)
+    setModalActions([{
+      primary: "OK",
+      secondary: null,
+      primaryOnClick: () => setIsModalOpen(false),
+      secondaryOnClick: () => setIsModalOpen(false),
+    }])
+  }
+
   return (
     <div className={"animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] flex flex-col justify-center items-center select-none text-center"}>
       <h1 className={"font-semibold dark:text-white text-4xl flex gap-2.5 my-4 "}><FormIcon className={"size-10.5 "} />Forum</h1>
