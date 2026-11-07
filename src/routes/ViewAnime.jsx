@@ -1,6 +1,7 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import HeaderAlt from "../components/HeaderAlt.jsx";
+import CardAlt from "../components/CardAlt.jsx";
 
 export default function ViewAnime(){
   const {id} = useParams();
@@ -87,7 +88,8 @@ export default function ViewAnime(){
       <HeaderAlt title={animeContent?.title?.english} />
 
 
-      <div className="relative z-10 flex h-full w-full justify-center items-center gap-8 p-6 animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+      <div className="relative z-10 flex my-30 mb-10 w-full justify-center items-center gap-8 p-6 animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+
         <img
           className="rounded-3xl shadow-2xl max-h-[70vh] object-cover"
           src={animeContent?.coverImage?.large}
@@ -100,8 +102,10 @@ export default function ViewAnime(){
           <p className="text-xl font-bold text-gray-300">{animeContent?.title?.native}</p>
         </div>
 
-
       </div>
+      <CardAlt>
+        I like cats
+      </CardAlt>
     </div>
   )
 }
