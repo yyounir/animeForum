@@ -26,8 +26,8 @@ export default function Modal({title, message, actions, options, isOpen = true, 
                     : 'animate-[fadeOut_0.1s_ease-in_forwards]'}
                 hover:scale-101 transition-all drop-shadow-[0_0_10px_rgba(255,255,255,1)] backdrop-blur-xs border
                      shadow-lg rounded-3xl max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain p-5
-                    hover:bg-white/25 bg-white/20 border-white/30
-                    dark:border-white/10 dark:hover:bg-black/25 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] ${className}`}>
+                    hover:bg-white/50 bg-white/45 border-white/30
+                    dark:border-white/10 dark:hover:bg-black/50 dark:bg-black/45 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] ${className}`}>
 
                 {title && <h1 className="text-2xl mb-2.5">
                     {title || "Title"}
