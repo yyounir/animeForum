@@ -9,6 +9,7 @@ export default function Input(props){
             id = {props.id}
             placeholder={props.placeholder}
             required
+            onChange={props.onChange}
         />
       )
     }
@@ -20,6 +21,7 @@ export default function Input(props){
               dark:border-white/10 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35 dark:focus:bg-black/50 ${props.className}`}
             id = {props.id}
             placeholder={props.placeholder}
+            onChange={props.onChange}
         />
     )
 }

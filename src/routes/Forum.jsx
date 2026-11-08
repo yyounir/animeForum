@@ -35,23 +35,31 @@ export default function Forum(){
     }])
   }
 
-  const [post, setPost] = useState({title:"", content:"", imageUrl:""})
+  const [postTitle, setPostTitle] = useState("");
+  const [postContent, setPostContent] = useState("");
+  const [postImageUrl, setPostImageUrl] = useState("");
+
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleChange = (event) => {
-    const {name, value} = event.target;
-    setPost((prev) => {
-      return{
-        ...prev,
-        [name]:value,
-      }
-    })
+  const handleTitleChange = (event) => {
+    setPostTitle(event.target.value);
+  }
+
+  const handleContentChange = (event) => {
+    setPostContent(event.target.value);
+  }
+
+  const handleImageUrlChange = (event) => {
+    setPostImageUrl(event.target.value);
   }
 
   const createPost = async(event) => {
     event.preventDefault()
+    console.log(postTitle);
+    console.log(postContent);
+    console.log(postImageUrl);
 
-    const {error} = await supabase.from('Forum').insert({Title: post.title, Content: post.content, ImageUrl: post.imageUrl});
+    const {error} = await supabase.from('Forum').insert({title: postTitle, content: postContent, image_url: postImageUrl});
 
     if(error) {
       setErrorMessage(error.message);
@@ -74,16 +82,16 @@ export default function Forum(){
           <form onSubmit={createPost} className={"mb-5 flex flex-col"}>
 
               <label className={"ml-2"} htmlFor={"PostTitle"}>Title</label>
-              <Input placeholder={"Post title"} className={""} required={true} value={post.title} onChange={handleChange}/>
+              <Input placeholder={"Post title"} className={""} required={true} onChange={handleTitleChange} name={"title"}/>
 
               <label className={"ml-2"} htmlFor={"PostTitle"}>Content</label>
-              <Input placeholder={"What do you want your post to be about?"} className={`bg - white / 20 drop-shadow-[0_0_10px_rgba(255,255,255,1)] border border-white/30 shadow-lg hover:bg-white/35 focus:bg-white/50 backdrop-blur-md transition-all hover:scale-101 focus:scale-102 rounded-4xl px-3 py-3
+              <textarea placeholder={"What do you want your post to be about?"} className={`bg - white / 20 drop-shadow-[0_0_10px_rgba(255,255,255,1)] border border-white/30 shadow-lg hover:bg-white/35 focus:bg-white/50 backdrop-blur-md transition-all hover:scale-101 focus:scale-102 rounded-4xl px-3 py-3
                 dark:border-white/10 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35 dark:focus:bg-black/50 `}
-                 value={post.content} onChange={handleChange}
+                 onChange={handleContentChange} name={"content"}
               />
 
               <label className={"ml-2"} htmlFor={"PostTitle"}>Image URL</label>
-              <Input placeholder={"Image URL"} className={""} required = {false}  value={post.imageUrl} onChange={handleChange}/>
+              <Input placeholder={"Image URL"} className={""} required = {false}  onChange={handleImageUrlChange} name={"image_url"}/>
 
 
               <ButtonChip className={"flex items-center justify-center mt-5 -mb-3"} primary={true}>
