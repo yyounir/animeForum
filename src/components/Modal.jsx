@@ -33,7 +33,6 @@ export default function Modal({title, message, actions, options, isOpen = true, 
                     {title || "Title"}
                 </h1>}
 
-              {message ??
                 <div className="mb-5">
                   {message.map((text, index) => (
                     <p key={index} className="max-w-[500px] mb-1">
@@ -41,7 +40,7 @@ export default function Modal({title, message, actions, options, isOpen = true, 
                     </p>
                   ))}
                 </div>
-              }
+
 
                 {/*{input && <div className="mb-5">*/}
                 {/*    <input type="text" placeholder="Enter text" className="bg-white/20 w-full p-3 rounded-2xl text-lg" />*/}

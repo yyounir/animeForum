@@ -22,7 +22,7 @@ export default function Forum(){
 
   const openCreatePost = () => {
     setModalTile("Create Post")
-    // setModalText(["Enter a post's title, and content.", "Pasting an image link is optional."])
+    setModalText([" "])
     setIsModalMounted(true)
     setIsModalOpen(true)
     setModalActions([{
@@ -47,7 +47,7 @@ export default function Forum(){
           isOpen={isModalOpen}
           onCloseComplete={() => setIsModalMounted(false)}
           actions={modalActions}
-          className={"w- w-100"}
+          className={"w-100"}
         >
           <form onSubmit={createPost} className={"mb-5 flex flex-col"}>
 
@@ -62,7 +62,7 @@ export default function Forum(){
               <Input placeholder={"Image URL"} className={""}/>
 
               <ButtonChip className={"flex items-center justify-center mt-5 -mb-3"} primary={true}>
-                <button className={"text-center h-full w-full cursor-pointer"} type={"submit"}>Submit</button>
+                <button className={"text-center h-full w-full cursor-pointer font-semibold text-lg"} type={"submit"}>Submit</button>
               </ButtonChip>
 
           </form>
