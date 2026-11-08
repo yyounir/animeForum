@@ -27,11 +27,15 @@ export default function Forum(){
     setIsModalOpen(true)
     setModalActions([{
       primary: null,
-      secondary: null,
+      secondary: "Cancel",
       primaryOnClick: () => setIsModalOpen(false),
       secondaryOnClick: () => setIsModalOpen(false),
     }])
   }
+
+  const createPost = async(event) => {
+      event.preventDefault()
+    }
 
   return (
     <div className={"animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] flex flex-col justify-center items-center select-none text-center"}>
@@ -45,8 +49,8 @@ export default function Forum(){
           actions={modalActions}
           className={"w- w-100"}
         >
-          <div className={"mb-5 flex flex-col"}>
-            <form>
+          <form onSubmit={createPost} className={"mb-5 flex flex-col"}>
+
               <label className={"ml-2"} htmlFor={"PostTitle"}>Title</label>
               <Input placeholder={"Post title"} className={""}/>
 
@@ -57,11 +61,11 @@ export default function Forum(){
               <label className={"ml-2"} htmlFor={"PostTitle"}>Image URL</label>
               <Input placeholder={"Image URL"} className={""}/>
 
-              <ButtonChip className={"flex items-center justify-center mt-5 -mb-5"} primary={true}>
-                <button className={"text-center w-full cursor-pointer"}>Submit</button>
+              <ButtonChip className={"flex items-center justify-center mt-5 -mb-3"} primary={true}>
+                <button className={"text-center h-full w-full cursor-pointer"} type={"submit"}>Submit</button>
               </ButtonChip>
-            </form>
-          </div>
+
+          </form>
         </Modal>
       )}
 
