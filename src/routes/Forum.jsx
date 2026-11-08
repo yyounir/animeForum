@@ -21,12 +21,12 @@ export default function Forum(){
 
   const openCreatePost = () => {
     setModalTile("Create Post")
-    setModalText(["Enter a post's title, and content.", "Pasting an image link is optional."])
+    // setModalText(["Enter a post's title, and content.", "Pasting an image link is optional."])
     setIsModalMounted(true)
     setIsModalOpen(true)
     setModalActions([{
-      primary: "OK",
-      secondary: "Cancel",
+      primary: "Post",
+      secondary: null,
       primaryOnClick: () => setIsModalOpen(false),
       secondaryOnClick: () => setIsModalOpen(false),
     }])
@@ -42,8 +42,12 @@ export default function Forum(){
           isOpen={isModalOpen}
           onCloseComplete={() => setIsModalMounted(false)}
           actions={modalActions}
+          className={"w-fit"}
         >
-
+          <div className={"mb-5 flex flex-col"}>
+            <label className={"ml-2"} htmlFor={"PostTitle"}>Title</label>
+            <Input placeholder={"Post title"} className={""}/>
+          </div>
         </Modal>
       )}
 

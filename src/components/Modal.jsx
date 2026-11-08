@@ -1,6 +1,6 @@
 import {createPortal} from "react-dom";
 
-export default function Modal({title, message, actions, options, isOpen = true, onCloseComplete, children}){
+export default function Modal({title, message, actions, options, isOpen = true, onCloseComplete, className, children}){
     return createPortal(
         <div 
             onAnimationEnd={(event) => {
@@ -25,20 +25,23 @@ export default function Modal({title, message, actions, options, isOpen = true, 
                     ? 'animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards]'
                     : 'animate-[fadeOut_0.1s_ease-in_forwards]'}
                 hover:scale-101 transition-all drop-shadow-[0_0_10px_rgba(255,255,255,1)] backdrop-blur-xs border
-                     shadow-lg rounded-3xl p-2 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain p-5 
+                     shadow-lg rounded-3xl max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain p-5
                     hover:bg-white/25 bg-white/20 border-white/30
-                    dark:border-white/10 dark:hover:bg-black/25 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)]`}>
+                    dark:border-white/10 dark:hover:bg-black/25 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] ${className}`}>
+
                 {title && <h1 className="text-2xl mb-2.5">
                     {title || "Title"}
                 </h1>}
-                
+
+              {message ??
                 <div className="mb-5">
-                    {message.map((text, index) => (
-                        <p key={index} className="max-w-[500px] mb-1">
-                            {text || "Sample message goes here! Sample message goes here! Sample message goes here! Sample message goes here!"}
-                        </p>
-                    ))}
+                  {message.map((text, index) => (
+                    <p key={index} className="max-w-[500px] mb-1">
+                      {text || "Sample message goes here! Sample message goes here! Sample message goes here! Sample message goes here!"}
+                    </p>
+                  ))}
                 </div>
+              }
 
                 {/*{input && <div className="mb-5">*/}
                 {/*    <input type="text" placeholder="Enter text" className="bg-white/20 w-full p-3 rounded-2xl text-lg" />*/}
