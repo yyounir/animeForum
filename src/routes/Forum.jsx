@@ -65,6 +65,9 @@ export default function Forum(){
       setErrorMessage(error.message);
       return
     }
+
+    setIsModalMounted(false)
+    setIsModalOpen(false)
   }
 
   return (
