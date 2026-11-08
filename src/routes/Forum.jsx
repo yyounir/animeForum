@@ -4,6 +4,7 @@ import Card from "../components/Card.jsx";
 import Input from "../components/Input.jsx";
 import {useState} from "react";
 import Modal from "../components/Modal.jsx";
+import ButtonChip from "../components/ButtonChip.jsx";
 
 export default function Forum(){
 
@@ -25,7 +26,7 @@ export default function Forum(){
     setIsModalMounted(true)
     setIsModalOpen(true)
     setModalActions([{
-      primary: "Post",
+      primary: null,
       secondary: null,
       primaryOnClick: () => setIsModalOpen(false),
       secondaryOnClick: () => setIsModalOpen(false),
@@ -47,6 +48,10 @@ export default function Forum(){
           <div className={"mb-5 flex flex-col"}>
             <label className={"ml-2"} htmlFor={"PostTitle"}>Title</label>
             <Input placeholder={"Post title"} className={""}/>
+
+            <ButtonChip className={"flex items-center justify-center mt-2 -mb-5"} primary={true}>
+              <button className={"text-center w-full cursor-pointer"}>Submit</button>
+            </ButtonChip>
           </div>
         </Modal>
       )}
