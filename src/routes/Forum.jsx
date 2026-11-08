@@ -19,7 +19,7 @@ export default function Forum(){
   }])
 
   const openCreatePost = () => {
-    setModalTile("About this Project")
+    setModalTile("Create Post")
     setModalText(["AnimeCorner", "Project made by Yasir Y."])
     setIsModalMounted(true)
     setIsModalOpen(true)
