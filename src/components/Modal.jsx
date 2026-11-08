@@ -1,5 +1,7 @@
-export default function Modal({title, message, actions, options, input, isOpen = true, onCloseComplete}){
-    return (
+import {createPortal} from "react-dom";
+
+export default function Modal({title, message, actions, options, isOpen = true, onCloseComplete, children}){
+    return createPortal(
         <div 
             onAnimationEnd={(event) => {
                 if (
@@ -10,7 +12,7 @@ export default function Modal({title, message, actions, options, input, isOpen =
                     onCloseComplete?.();
                 }
             }}
-            className={`fixed inset-0 z-10002 flex items-center justify-center backdrop-blur-md p-4
+            className={`fixed inset-0 z-[2147483647] flex items-center justify-center backdrop-blur-md p-4
                 ${isOpen
                     ? 'animate-[fadeIn_0.1s_ease-out_forwards]'
                     : 'animate-[fadeOut_0.1s_ease-in_forwards]'}`}
@@ -37,15 +39,16 @@ export default function Modal({title, message, actions, options, input, isOpen =
                         </p>
                     ))}
                 </div>
-                
 
-                {input && <div className="mb-5">
-                    <input type="text" placeholder="Enter text" className="bg-white/20 w-full p-3 rounded-2xl text-lg" />
-                </div>}
+                {/*{input && <div className="mb-5">*/}
+                {/*    <input type="text" placeholder="Enter text" className="bg-white/20 w-full p-3 rounded-2xl text-lg" />*/}
+                {/*</div>}*/}
+
+                {children}
 
                 {options && options.map((option, index) => (
-                (<div className="mb-5">
-                    <a key={index} onClick={option.onClick} className={`select-none cursor-pointer flex w-full gap-2.5 px-3 py-3 rounded-2xl transition-all hover:bg-black/10 active:bg-black/25 dark:hover:bg-white/10 dark:active:bg-white/25 m-0 justify-center font-semibold`}>
+                (<div className="mb-5" key={index}>
+                    <a onClick={option.onClick} className={`select-none cursor-pointer flex w-full gap-2.5 px-3 py-3 rounded-2xl transition-all hover:bg-black/10 active:bg-black/25 dark:hover:bg-white/10 dark:active:bg-white/25 m-0 justify-center font-semibold`}>
                         <p className="text-lg -mt-0.5">option.text</p>
                     </a>
                 </div>)))
@@ -75,6 +78,7 @@ export default function Modal({title, message, actions, options, input, isOpen =
                     ))
                 }
             </div>
-        </div>
+        </div>,
+        document.body
     )
 }
