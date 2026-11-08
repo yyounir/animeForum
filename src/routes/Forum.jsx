@@ -39,7 +39,7 @@ export default function Forum(){
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (event) => {
-    const {name, value} = event.target
+    const {name, value} = event.target;
     setPost((prev) => {
       return{
         ...prev,
