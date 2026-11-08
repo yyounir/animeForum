@@ -27,7 +27,7 @@ export default function Home(){
 
         <div className={"mt-35"}>
           <h1 className={"text-7xl dark:text-white"}>Join the <span className={"font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600 dark:to-yellow-500"}>crew</span></h1>
-          <h1 className={"text-7xl dark:text-white"}>In finding <span className={"font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600 dark:to-yellow-500"}>the One Piece!</span></h1>
+          <h1 className={"text-7xl dark:text-white"}>In finding <span className={"font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600 dark:to-yellow-500"}>the greatest treasure!</span></h1>
           <p className={"text-xl mt-4 dark:text-white"}>Check out the forum to see what other people think about the anime they watched!</p>
           <Link to={"/forum"}><div className={"text-md mt-3"}><Button value={"Head to the Forum"} rightIcon={ArrowRightIcon} /></div></Link>
         </div>
