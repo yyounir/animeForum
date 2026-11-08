@@ -3,6 +3,7 @@ import Button from "../components/Button.jsx";
 import Card from "../components/Card.jsx";
 import Input from "../components/Input.jsx";
 import {useState} from "react";
+import Modal from "../components/Modal.jsx";
 
 export default function Forum(){
 
@@ -20,12 +21,12 @@ export default function Forum(){
 
   const openCreatePost = () => {
     setModalTile("Create Post")
-    setModalText(["AnimeCorner", "Project made by Yasir Y."])
+    setModalText(["Enter a post's title, and content.", "Pasting an image link is optional."])
     setIsModalMounted(true)
     setIsModalOpen(true)
     setModalActions([{
       primary: "OK",
-      secondary: null,
+      secondary: "Cancel",
       primaryOnClick: () => setIsModalOpen(false),
       secondaryOnClick: () => setIsModalOpen(false),
     }])
@@ -33,14 +34,90 @@ export default function Forum(){
 
   return (
     <div className={"animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] flex flex-col justify-center items-center select-none text-center"}>
+
+      {isModalMounted && (
+        <Modal
+          title={modalTitle}
+          message={modalText}
+          isOpen={isModalOpen}
+          onCloseComplete={() => setIsModalMounted(false)}
+          actions={modalActions}
+        >
+
+        </Modal>
+      )}
+
       <h1 className={"font-semibold dark:text-white text-4xl flex gap-2.5 my-4 "}><FormIcon className={"size-10.5 "} />Forum</h1>
 
-      <Button icon={PlusIcon} value={"Create Post"}/>
+      <Button icon={PlusIcon} value={"Create Post"} onClick={openCreatePost}/>
 
       <div className={"mt-5"}>
         <Input placeholder = "Search a Post..." className={"my-3 w-100"}/>
 
         <div className={"flex flex-wrap gap-4 justify-center"}>
+          <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
+            <p>I like cats</p>
+            <div className={"flex flex-row gap-3 my-3"}>
+              <Button icon={PencilIcon} value={"Edit"} />
+              <Button icon={TrashIcon} value={"Delete"} />
+            </div>
+          </Card>
+          <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
+            <p>I like cats</p>
+            <div className={"flex flex-row gap-3 my-3"}>
+              <Button icon={PencilIcon} value={"Edit"} />
+              <Button icon={TrashIcon} value={"Delete"} />
+            </div>
+          </Card>
+          <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
+            <p>I like cats</p>
+            <div className={"flex flex-row gap-3 my-3"}>
+              <Button icon={PencilIcon} value={"Edit"} />
+              <Button icon={TrashIcon} value={"Delete"} />
+            </div>
+          </Card>
+          <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
+            <p>I like cats</p>
+            <div className={"flex flex-row gap-3 my-3"}>
+              <Button icon={PencilIcon} value={"Edit"} />
+              <Button icon={TrashIcon} value={"Delete"} />
+            </div>
+          </Card>
+          <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
+            <p>I like cats</p>
+            <div className={"flex flex-row gap-3 my-3"}>
+              <Button icon={PencilIcon} value={"Edit"} />
+              <Button icon={TrashIcon} value={"Delete"} />
+            </div>
+          </Card>
+          <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
+            <p>I like cats</p>
+            <div className={"flex flex-row gap-3 my-3"}>
+              <Button icon={PencilIcon} value={"Edit"} />
+              <Button icon={TrashIcon} value={"Delete"} />
+            </div>
+          </Card>
+          <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
+            <p>I like cats</p>
+            <div className={"flex flex-row gap-3 my-3"}>
+              <Button icon={PencilIcon} value={"Edit"} />
+              <Button icon={TrashIcon} value={"Delete"} />
+            </div>
+          </Card>
+          <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
+            <p>I like cats</p>
+            <div className={"flex flex-row gap-3 my-3"}>
+              <Button icon={PencilIcon} value={"Edit"} />
+              <Button icon={TrashIcon} value={"Delete"} />
+            </div>
+          </Card>
+          <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
+            <p>I like cats</p>
+            <div className={"flex flex-row gap-3 my-3"}>
+              <Button icon={PencilIcon} value={"Edit"} />
+              <Button icon={TrashIcon} value={"Delete"} />
+            </div>
+          </Card>
           <Card title={"Meow"} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
             <p>I like cats</p>
             <div className={"flex flex-row gap-3 my-3"}>
