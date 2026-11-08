@@ -2,6 +2,7 @@ import {FormIcon, PencilIcon, PlusIcon, TrashIcon} from "lucide-react";
 import Button from "../components/Button.jsx";
 import Card from "../components/Card.jsx";
 import Input from "../components/Input.jsx";
+import {useState} from "react";
 
 export default function Forum(){
 
