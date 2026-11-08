@@ -67,7 +67,7 @@ export default function Forum(){
       setErrorMessage(error.message);
       return
     }
-
+    fetchPosts();
     setIsModalMounted(false)
     setIsModalOpen(false)
   }
@@ -132,13 +132,17 @@ export default function Forum(){
         <Input placeholder = "Search a Post..." className={"my-3 w-100"}/>
 
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
-          <Card title={"Meow"} className={`w-100 h-fit`} image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpkQ3M7V45Gb1ddYlpJOSoGto1yTBfImfwrgZjIxwOnF4RnDUGAb8WfgpowKDiU3WpdfrSmaNB9d_RpeGKNBUU5rUS71ukdXOMAt19SMA&s=10"} >
-            <p>I like cats</p>
-            <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
-              <Button icon={PencilIcon} value={"Edit"} />
-              <Button icon={TrashIcon} value={"Delete"} />
-            </div>
-          </Card>
+          {posts.map((post) =>(
+            <Card title={post.title} className={`w-100 h-fit`}
+                 image={post.image_url}>
+              <p>{post.content}</p>
+              <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
+                <Button icon={PencilIcon} value={"Edit"}/>
+                <Button icon={TrashIcon} value={"Delete"}/>
+              </div>
+            </Card>
+            ))
+          }
 
         </div>
       </div>
