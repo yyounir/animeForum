@@ -2,7 +2,7 @@ import {FormIcon, PencilIcon, PlusIcon, TrashIcon} from "lucide-react";
 import Button from "../components/Button.jsx";
 import Card from "../components/Card.jsx";
 import Input from "../components/Input.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Modal from "../components/Modal.jsx";
 import ButtonChip from "../components/ButtonChip.jsx";
 
@@ -34,6 +34,8 @@ export default function Forum(){
       secondaryOnClick: () => setIsModalOpen(false),
     }])
   }
+
+  // Create Posts
 
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
@@ -69,6 +71,24 @@ export default function Forum(){
     setIsModalMounted(false)
     setIsModalOpen(false)
   }
+
+  // Read Posts
+  const [posts, setPosts] = useState([]);
+
+  const fetchPosts = async() => {
+    try {
+      const {data} = await supabase.from("Forum").select();
+      setPosts(data)
+      console.log(data)
+    }
+    catch (error){
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <div className={"animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] flex flex-col justify-center items-center select-none text-center"}>
