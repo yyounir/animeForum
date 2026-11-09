@@ -1,5 +1,6 @@
-import anime1 from "../assets/Anime.png"
-import anime2 from "../assets/Anime1.png"
+import anime1 from "../assets/Anime.png";
+import anime2 from "../assets/Anime1.png";
+import anime3 from "../assets/Anime2.png";
 import Button from "../components/Button.jsx";
 import {ArrowRightIcon} from "lucide-react";
 import {Link} from "react-router";
@@ -31,7 +32,7 @@ export default function Home(){
           <p className={"text-xl mt-4 dark:text-white"}>Check out the forum to see what other people think about the anime they watched!</p>
           <Link to={"/forum"}><div className={"text-md mt-3"}><Button value={"Head to the Forum"} rightIcon={ArrowRightIcon} /></div></Link>
         </div>
-        {/*<img src={anime2} className={"w-350 mt-10 m-5"} />*/}
+        <img src={anime3} className={"w-350 mt-10 m-5"} />
       </div>
     </div>
   )
