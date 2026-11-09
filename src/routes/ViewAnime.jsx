@@ -86,7 +86,7 @@ export default function ViewAnime(){
         className="absolute inset-0 bg-cover bg-center blur-md scale-105 pointer-events-none opacity-50 animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]"
       />
 
-      <HeaderAlt title={animeContent?.title?.english} />
+      <HeaderAlt back={"/explore"} title={animeContent?.title?.english} />
 
       <div className="absolute inset-0 z-10 overflow-y-auto overscroll-contain">
         <div className="flex my-30 mb-10 w-full justify-center items-center gap-8 p-6 animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]">

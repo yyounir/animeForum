@@ -4,7 +4,7 @@ import {Link} from "react-router";
 import ButtonGroup from "./ButtonGroup.jsx";
 
 
-export default function HeaderAlt({openMenu, title}){
+export default function HeaderAlt({openMenu, title, back}){
 
     return (
         <header className="py-3 flex flex-row
@@ -21,7 +21,7 @@ export default function HeaderAlt({openMenu, title}){
                 {/*<Link to={"/"}><Button icon={ArrowLeft} /></Link>*/}
                 <ButtonGroup
                    onClick={openMenu}
-                   icons={[{icon: ArrowLeft, to: "/explore"}]}
+                   icons={[{icon: ArrowLeft, to: back}]}
                 />
                 <p className="font-semibold text-2xl textglow ml-1  text-black dark:text-white mb-1 ">{title}</p>
             </div>
