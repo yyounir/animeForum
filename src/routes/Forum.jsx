@@ -7,6 +7,7 @@ import Modal from "../components/Modal.jsx";
 import ButtonChip from "../components/ButtonChip.jsx";
 
 import {supabase} from "../client.js";
+import {Link} from "react-router";
 
 export default function Forum(){
 
@@ -131,8 +132,9 @@ export default function Forum(){
 
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
           {posts.map((post, index) =>(
-            <div key={index}>
-              <Card id={posts.id} title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"}
+            <Link to={"/viewPost"} key={index}>
+
+              <Card id={posts.id} title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"} onClick={" "}
                    image={post.image_url}>
                 <p>{post.content}</p>
                 <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
@@ -140,7 +142,7 @@ export default function Forum(){
                   <Button icon={TrashIcon} value={"Delete"}/>
                 </div>
               </Card>
-            </div>
+            </Link>
             ))
           }
 
