@@ -118,7 +118,7 @@ export default function Forum(){
 
 
               <ButtonChip className={"flex items-center justify-center mt-5 -mb-3"} primary={true}>
-                <button className={"text-center h-full w-full cursor-pointer font-semibold text-lg"} type={"submit"}>Submit</button>
+                <button className={"text-center h-full w-full cursor-pointer font-semibold text-lg"} type={"submit"}>Post</button>
               </ButtonChip>
           </form>
         </Modal>
