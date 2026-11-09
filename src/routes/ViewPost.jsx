@@ -5,7 +5,7 @@ import {supabase} from "../client.js";
 import {useState, useEffect} from "react";
 import Spinner from "../components/Spinner.jsx";
 import Button from "../components/Button.jsx";
-import {PencilIcon, ThumbsUpIcon, TrashIcon} from "lucide-react";
+import {PencilIcon, SendHorizonalIcon, ThumbsUpIcon, TrashIcon} from "lucide-react";
 import Card from "../components/Card.jsx";
 import Input from "../components/Input.jsx";
 import ButtonChip from "../components/ButtonChip.jsx";
@@ -60,9 +60,10 @@ export default function ViewPost(){
               <p>Post created: </p>
 
               <Card title={"Comments"} className={"w-full gap-2 "} >
-                <div className={"flex w-full"}>
+                <div className={"flex w-full gap-2"}>
                   <Input placeholder={"Comment..."} className={"w-full"} />
-                  <ButtonChip className={"max-w-fit justify-center items-center px-0"}><button className={"cursor-pointer"}>Comment</button></ButtonChip>
+                  {/*<ButtonChip className={"max-w-fit justify-center items-center px-0"}><button className={"cursor-pointer"}>Comment</button></ButtonChip>*/}
+                  <Button icon={SendHorizonalIcon} primary={true}/>
                 </div>
                 {/*<p>Be the first to comment</p>*/}
                 <Card className={"w-full justify-center items-start shadow-none"}>
