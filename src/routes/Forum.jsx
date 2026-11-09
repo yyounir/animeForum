@@ -137,9 +137,9 @@ export default function Forum(){
       <Button icon={PlusIcon} value={"Create Post"} onClick={openCreatePost}/>
 
       <div className={"mt-5"}>
-        <Input placeholder = "Search a Post..." className={"my-3 w-100"}/>
+        <Input placeholder = "Search a Post..." className={"my-5 w-100"}/>
 
-        {isLoading ? <Spinner size={"sm"} text={"Fetching Posts..."}/>: ""}
+        {isLoading ? <div className={"mt-3"}><Spinner size={"sm"} text={"Fetching Posts..."}/></div>: ""}
 
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
           {posts.map((post, index) =>(
