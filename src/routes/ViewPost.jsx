@@ -57,7 +57,7 @@ export default function ViewPost(){
                 <Button icon={TrashIcon}/>
               </div>
 
-              <p>Post created: </p>
+              {/*<p>Post created: </p>*/}
 
               <Card title={"Comments"} className={"w-full gap-2 "} >
                 <div className={"flex w-full gap-2"}>
