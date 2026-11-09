@@ -1,4 +1,4 @@
-import {FormIcon, PencilIcon, PlusIcon, TrashIcon} from "lucide-react";
+import {FormIcon, PencilIcon, PlusIcon, ThumbsUpIcon, TrashIcon} from "lucide-react";
 import Button from "../components/Button.jsx";
 import Card from "../components/Card.jsx";
 import Input from "../components/Input.jsx";
@@ -151,8 +151,9 @@ export default function Forum(){
                    image={post.image_url}>
                 <p>{post.content}</p>
                 <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
-                  <Button icon={PencilIcon} value={"Edit"}/>
-                  <Button icon={TrashIcon} value={"Delete"}/>
+                  <Button icon={ThumbsUpIcon} value={"Like"}/>
+                  <Button icon={PencilIcon}/>
+                  <Button icon={TrashIcon}/>
                 </div>
               </Card>
             </Link>

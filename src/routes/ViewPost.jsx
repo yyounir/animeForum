@@ -4,6 +4,8 @@ import {useParams} from "react-router";
 import {supabase} from "../client.js";
 import {useState, useEffect} from "react";
 import Spinner from "../components/Spinner.jsx";
+import Button from "../components/Button.jsx";
+import {PencilIcon, ThumbsUpIcon, TrashIcon} from "lucide-react";
 
 export default function ViewPost(){
   const [posts, setPosts] = useState([]);
@@ -45,7 +47,14 @@ export default function ViewPost(){
               <img src={posts[0].image_url} className={"rounded-3xl max-h-70 mb-5"} />
               <h2 className={"text-3xl font-bold"}>{posts[0].title}</h2>
               <p className={"text-lg"}>{posts[0].content}</p>
+
+              <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
+                  <Button icon={ThumbsUpIcon} value={"Like"}/>
+                  <Button icon={PencilIcon}/>
+                  <Button icon={TrashIcon}/>
+                </div>
             </div>
+
           </div>
         }
 
