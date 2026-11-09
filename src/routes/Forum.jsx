@@ -79,7 +79,6 @@ export default function Forum(){
     try {
       const {data} = await supabase.from("Forum").select();
       setPosts(data)
-      console.log(data)
     }
     catch (error){
       console.error(error);
@@ -132,15 +131,17 @@ export default function Forum(){
         <Input placeholder = "Search a Post..." className={"my-3 w-100"}/>
 
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
-          {posts.map((post) =>(
-            <Card title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"}
-                 image={post.image_url}>
-              <p>{post.content}</p>
-              <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
-                <Button icon={PencilIcon} value={"Edit"}/>
-                <Button icon={TrashIcon} value={"Delete"}/>
-              </div>
-            </Card>
+          {posts.map((post, index) =>(
+            <div key={index}>
+              <Card id={posts.id} title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"}
+                   image={post.image_url}>
+                <p>{post.content}</p>
+                <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
+                  <Button icon={PencilIcon} value={"Edit"}/>
+                  <Button icon={TrashIcon} value={"Delete"}/>
+                </div>
+              </Card>
+            </div>
             ))
           }
 
