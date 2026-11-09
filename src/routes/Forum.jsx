@@ -8,8 +8,13 @@ import ButtonChip from "../components/ButtonChip.jsx";
 
 import {supabase} from "../client.js";
 import {Link} from "react-router";
+import Spinner from "../components/Spinner.jsx";
 
 export default function Forum(){
+
+  // Loading
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  const [isLoading, setIsLoading] = useState([true]);
 
   // Modal
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -79,11 +84,15 @@ export default function Forum(){
   const fetchPosts = async() => {
     try {
       const {data} = await supabase.from("Forum").select();
-      setPosts(data)
+      await sleep(1500);
+      setPosts(data);
+      setIsLoading(false);
     }
     catch (error){
       console.error(error);
     }
+
+
   }
   useEffect(() => {
     fetchPosts();
@@ -130,6 +139,8 @@ export default function Forum(){
       <div className={"mt-5"}>
         <Input placeholder = "Search a Post..." className={"my-3 w-100"}/>
 
+        {isLoading ? <Spinner size={"sm"} text={"Fetching Posts..."}/>: ""}
+
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
           {posts.map((post, index) =>(
             <Link to={`/forum/${post.id}`} key={index}>
@@ -148,7 +159,7 @@ export default function Forum(){
 
         </div>
       </div>
-      <div className={"h-100"}>
+      <div className={"h-175"}>
 
       </div>
     </div>
