@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')).render(
         </Route>
 
         <Route path={"/explore/:id"} element={<ViewAnime/>} />
-        <Route path={"/viewPost"} element={<ViewPost/>} />
+        <Route path={"/forum/:id"} element={<ViewPost/>} />
         <Route path={"*"} element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
