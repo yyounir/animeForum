@@ -3,6 +3,7 @@ import {useParams} from "react-router";
 
 import {supabase} from "../client.js";
 import {useState, useEffect} from "react";
+import Spinner from "../components/Spinner.jsx";
 
 export default function ViewPost(){
   const [posts, setPosts] = useState([]);
@@ -28,8 +29,9 @@ export default function ViewPost(){
     <div>
       <HeaderAlt back={"/forum"} title={"Post"}/>
 
-      <div className={"mt-20 animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]"}>
-        <p>I like cats</p>
+      <div className={"flex flex-col justify-center items-center mt-20 animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]"}>
+        {/*<p>I like cats</p>*/}
+        <Spinner size={"sm"} text={"Fetching Post..."}/>
       </div>
     </div>
   )
