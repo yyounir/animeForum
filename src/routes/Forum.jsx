@@ -14,7 +14,7 @@ export default function Forum(){
 
   // Loading
   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-  const [isLoading, setIsLoading] = useState([true]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Modal
   const [isModalOpen, setIsModalOpen] = useState(false)
