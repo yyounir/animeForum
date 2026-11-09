@@ -84,10 +84,11 @@ export default function Forum(){
       console.error(error);
     }
   }
-
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  // Edit Post
 
   return (
     <div className={"animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] flex flex-col justify-center items-center select-none text-center"}>
