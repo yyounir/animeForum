@@ -132,9 +132,9 @@ export default function Forum(){
 
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
           {posts.map((post, index) =>(
-            <Link to={"/viewPost"} key={index}>
+            <Link to={`/forum/${post.id}`} key={index}>
 
-              <Card id={posts.id} title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"} onClick={" "}
+              <Card title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"} onClick={" "}
                    image={post.image_url}>
                 <p>{post.content}</p>
                 <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>

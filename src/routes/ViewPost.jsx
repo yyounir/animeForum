@@ -2,7 +2,7 @@ import HeaderAlt from "../components/HeaderAlt.jsx";
 import {useParams} from "react-router";
 
 import {supabase} from "../client.js";
-import {useEffect} from "react";
+import {useState, useEffect} from "react";
 
 export default function ViewPost(){
   const [posts, setPosts] = useState([]);
