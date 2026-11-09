@@ -85,8 +85,10 @@ export default function Forum(){
     try {
       const {data} = await supabase.from("Forum").select();
       await sleep(1500);
-      setPosts(data);
-      setIsLoading(false);
+      if(data){
+        setPosts(data);
+        setIsLoading(false);
+      }
     }
     catch (error){
       console.error(error);
@@ -142,7 +144,7 @@ export default function Forum(){
         {isLoading ? <div className={"mt-3"}><Spinner size={"sm"} text={"Fetching Posts..."}/></div>: ""}
 
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
-          {posts.map((post, index) =>(
+          {posts?.map((post, index) =>(
             <Link to={`/forum/${post.id}`} key={index}>
 
               <Card title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"} onClick={" "}
