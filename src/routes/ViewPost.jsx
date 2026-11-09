@@ -1,9 +1,28 @@
 import HeaderAlt from "../components/HeaderAlt.jsx";
 import {useParams} from "react-router";
 
-export default function ViewPost(){
+import {supabase} from "../client.js";
+import {useEffect} from "react";
 
-  const id = useParams()
+export default function ViewPost(){
+  const [posts, setPosts] = useState([]);
+  const id = useParams();
+
+  useEffect(() => {
+    const fetchPosts = async() => {
+      try {
+        const {data} = await supabase.from("Forum").select().eq("id", id);
+        setPosts(data)
+        console.log(data)
+      }
+      catch(error){
+        console.log("Failed to fetch at", error);
+      }
+
+      fetchPosts();
+    }
+
+  }, []);
 
   return (
     <div>
