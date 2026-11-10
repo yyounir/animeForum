@@ -163,7 +163,7 @@ export default function Forum(){
           {posts?.map((post, index) =>(
 
             <div key={index}>
-              <Card classNameImg={"max-h-50"} className={"p-0"} onClick={""}>
+              <Card classNameImg={"max-h-50"} className={"p-0"} onClick={" "}>
                 <Link to={`/forum/${post.id}`}>
                   {post.image_url && <img src={post.image_url} className={`rounded-3xl w-[400px] h-[200px] object-cover object-center `}/>}
                   <h2 className={"text-2xl pt-5"}>{post.title}</h2>
