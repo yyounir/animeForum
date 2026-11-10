@@ -10,6 +10,7 @@ export default function Input(props){
             placeholder={props.placeholder}
             required
             onChange={props.onChange}
+            value = {props.value}
         />
       )
     }
@@ -22,6 +23,7 @@ export default function Input(props){
             id = {props.id}
             placeholder={props.placeholder}
             onChange={props.onChange}
+            value = {props.value}
         />
     )
 }
