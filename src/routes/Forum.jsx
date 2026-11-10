@@ -147,6 +147,34 @@ export default function Forum(){
     setIsEditingPost(false)
   }
 
+  // Delete Post
+  const openDeletePost = (post) => {
+    setIdToEdit(post.id);
+    setErrorMessage("");
+    setModalTile("Delete Post");
+    setModalText(["Are you sure you want to delete this post?"])
+    setIsModalMounted(true)
+    setIsModalOpen(true)
+    setModalActions([{
+      primary: null,
+      secondary: "Cancel",
+      primaryOnClick: () => setIsModalOpen(false),
+      secondaryOnClick: () => setIsModalOpen(false),
+    }])
+  }
+
+  const deletePost = async(event) => {
+    event.preventDefault();
+    setIsEditingPost(true)
+    await supabase.from("Forum").delete().eq("id", idToEdit)
+    fetchPosts();
+
+    sleep(2000)
+    setIsModalMounted(false);
+    setIsModalOpen(false);
+    setIsEditingPost(false)
+  }
+
   return (
     <div className={"animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] flex flex-col justify-center items-center select-none text-center"}>
 
@@ -209,6 +237,17 @@ export default function Forum(){
               </ButtonChip>
             </form>
           }
+          {modalTitle == "Delete Post" &&
+            <form onSubmit={deletePost} className={"mb-5 flex flex-col"}>
+
+
+              <ButtonChip className={"flex items-center justify-center mt-5 -mb-3"} primary={true}>
+                <button className={"text-center h-full w-full cursor-pointer font-semibold text-lg text-red-500"} type={"submit"}>
+                  {isEditingPost ? <Spinner size={"xxxs"} /> : "Delete"}
+                </button>
+              </ButtonChip>
+            </form>
+          }
         </Modal>
       )}
 
@@ -236,7 +275,7 @@ export default function Forum(){
                 <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
                   <Button icon={ThumbsUpIcon} value={"Like"}/>
                   <Button  onClick={() => openEditPost(post)} icon={PencilIcon}/>
-                  <Button icon={TrashIcon}/>
+                  <Button onClick={() => openDeletePost(post)} icon={TrashIcon}/>
                 </div>
               </Card>
             </div>
@@ -244,9 +283,6 @@ export default function Forum(){
           }
 
         </div>
-      </div>
-      <div className={"h-170"}>
-
       </div>
     </div>
   )
