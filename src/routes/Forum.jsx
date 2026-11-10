@@ -152,9 +152,9 @@ export default function Forum(){
 
       <h1 className={"font-semibold dark:text-white text-4xl flex gap-2.5 my-4 "}><FormIcon className={"size-10.5 "} />Forum</h1>
 
-      <Button icon={PlusIcon} value={"Create Post"} className={"drop-shadow-none dark:drop-shadow-none"} primary={true} onClick={openCreatePost}/>
+      <Button icon={PlusIcon} value={"Create Post"} className={"mt-5 drop-shadow-none dark:drop-shadow-none"} primary={true} onClick={openCreatePost}/>
 
-      <div className={"mt-5"}>
+      <div className={"mt-2"}>
         <Input placeholder = "Search a Post..." className={"my-5 w-100"}/>
 
         {isLoading ? <div className={"mt-3"}><Spinner size={"sm"} text={"Fetching Posts..."}/></div>: ""}
