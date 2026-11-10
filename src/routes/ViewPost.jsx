@@ -16,6 +16,7 @@ export default function ViewPost(){
   const {id} = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   useEffect(() => {
     const fetchPosts = async() => {
@@ -107,6 +108,35 @@ export default function ViewPost(){
     }
   }
 
+  // Delete Post
+  const openDeletePost = (post) => {
+    setIdToEdit(post.id);
+    setErrorMessage("");
+    setModalTile("Delete Post");
+    setModalText(["Are you sure you want to delete this post?"])
+    setIsModalMounted(true)
+    setIsModalOpen(true)
+    setModalActions([{
+      primary: null,
+      secondary: "Cancel",
+      primaryOnClick: () => setIsModalOpen(false),
+      secondaryOnClick: () => setIsModalOpen(false),
+    }])
+  }
+
+
+  const deletePost = async(event) => {
+    event.preventDefault();
+    setIsEditingPost(true)
+    await supabase.from("Forum").delete().eq("id", idToEdit)
+
+
+    sleep(2000)
+    setIsModalMounted(false);
+    setIsModalOpen(false);
+    setIsEditingPost(false)
+    window.location = "/forum"
+  }
 
   return (
     <div>
@@ -149,6 +179,17 @@ export default function ViewPost(){
                 </ButtonChip>
               </form>
             }
+            {modalTitle == "Delete Post" &&
+              <form onSubmit={deletePost} className={"mb-5 flex flex-col"}>
+
+
+                <ButtonChip className={"flex items-center justify-center mt-5 -mb-3"} primary={true}>
+                  <button className={"text-center h-full w-full cursor-pointer font-semibold text-lg text-red-500"} type={"submit"}>
+                    {isEditingPost ? <Spinner size={"xxxs"} /> : "Delete"}
+                  </button>
+                </ButtonChip>
+              </form>
+            }
           </Modal>
         )}
         {isLoading ?
@@ -164,7 +205,7 @@ export default function ViewPost(){
               <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
                 <Button icon={ThumbsUpIcon} value={"Like"}/>
                 <Button icon={PencilIcon} onClick={() => openEditPost(posts[0])}/>
-                <Button icon={TrashIcon}/>
+                <Button icon={TrashIcon} onClick={() => openDeletePost(posts[0])} />
               </div>
 
               <Card title={"Comments"} className={"w-full gap-2 "} >
