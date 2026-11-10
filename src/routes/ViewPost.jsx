@@ -23,14 +23,14 @@ export default function ViewPost(){
         const {data} = await supabase.from("Forum").select().eq("id", id);
         await sleep(1000);
         if(data){
-          console.log(data);
+          // console.log(data);
           setPosts(data);
-          console.log(data[0].title)
+          // console.log(data[0].title)
           setIsLoading(false);
         }
       }
       catch(error){
-        console.log("Failed to fetch at", error);
+        console.error("Failed to fetch at", error);
       }
     }
     fetchPosts();
@@ -60,7 +60,7 @@ export default function ViewPost(){
               {/*<p>Post created: </p>*/}
 
               <Card title={"Comments"} className={"w-full gap-2 "} >
-                <div className={"flex w-full gap-2"}>
+                <div className={"flex w-full gap-2  mb-3"}>
                   <Input placeholder={"Comment..."} className={"w-full"} />
                   {/*<ButtonChip className={"max-w-fit justify-center items-center px-0"}><button className={"cursor-pointer"}>Comment</button></ButtonChip>*/}
                   <Button icon={SendHorizonalIcon} primary={true}/>

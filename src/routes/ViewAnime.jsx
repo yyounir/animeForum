@@ -71,7 +71,7 @@ export default function ViewAnime(){
         );
       }
 
-      console.log(data.Media);
+      // console.log(data.Media);
       setAnimeContent(data.Media);
     }
 

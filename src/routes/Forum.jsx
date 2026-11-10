@@ -162,17 +162,20 @@ export default function Forum(){
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
           {posts?.map((post, index) =>(
 
-
-              <Card to={`/forum/${post.id}`} title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"} onClick={" "}
-                   image={post.image_url}>
-                <p>{post.content}</p>
+            <div key={index}>
+              <Card classNameImg={"max-h-50"} className={"p-0"} onClick={""}>
+                <Link to={`/forum/${post.id}`}>
+                  {post.image_url && <img src={post.image_url} className={`rounded-3xl w-[400px] h-[200px] object-cover object-center `}/>}
+                  <h2 className={"text-2xl pt-5"}>{post.title}</h2>
+                  <p>{post.content}</p>
+                </Link>
                 <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
                   <Button icon={ThumbsUpIcon} value={"Like"}/>
                   <Button  onClick={openEditPost} icon={PencilIcon}/>
                   <Button icon={TrashIcon}/>
                 </div>
               </Card>
-
+            </div>
             ))
           }
 
