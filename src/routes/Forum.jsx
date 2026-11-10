@@ -103,8 +103,9 @@ export default function Forum(){
   // Update Posts
   const [idToEdit, setIdToEdit] = useState(-1);
 
-  const openEditPost = () => {
-    setModalTile("Edit Post")
+  const openEditPost = (id) => {
+    setIdToEdit(id);
+    setModalTile("Edit Post");
     setModalText([" "])
     setIsModalMounted(true)
     setIsModalOpen(true)
@@ -114,6 +115,10 @@ export default function Forum(){
       primaryOnClick: () => setIsModalOpen(false),
       secondaryOnClick: () => setIsModalOpen(false),
     }])
+  }
+
+  const editPost = () => {
+    console.log("Meow");
   }
 
   return (
@@ -128,27 +133,60 @@ export default function Forum(){
           actions={modalActions}
           className={"w-100"}
         >
-          <form onSubmit={createPost} className={"mb-5 flex flex-col"}>
+          {modalTitle == "Create Post" &&
+            <form onSubmit={createPost} className={"mb-5 flex flex-col"}>
 
               <label className={"ml-2"} htmlFor={"PostTitle"}>Title</label>
-              <Input placeholder={"Post title"} className={""} required={true} onChange={handleTitleChange} name={"title"}/>
+              <Input placeholder={"Post title"} className={""} required={true} onChange={handleTitleChange}
+                     name={"title"}/>
 
               <label className={"ml-2"} htmlFor={"PostTitle"}>Content</label>
               <textarea placeholder={"What do you want your post to be about?"} className={`bg - white / 20 drop-shadow-[0_0_10px_rgba(255,255,255,1)] border border-white/30 shadow-lg hover:bg-white/35 focus:bg-white/50 backdrop-blur-md transition-all hover:scale-101 focus:scale-102 rounded-3xl px-3 py-3
-                dark:border-white/10 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35 dark:focus:bg-black/50 `}
-                 onChange={handleContentChange} name={"content"}
+                  dark:border-white/10 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35 dark:focus:bg-black/50 `}
+                        onChange={handleContentChange} name={"content"}
               />
 
               <label className={"ml-2"} htmlFor={"PostTitle"}>Image URL</label>
-              <Input placeholder={"Image URL"} className={""} required = {false}  onChange={handleImageUrlChange} name={"image_url"}/>
+              <Input placeholder={"Image URL"} className={""} required={false} onChange={handleImageUrlChange}
+                     name={"image_url"}/>
 
 
               <ButtonChip className={"flex items-center justify-center mt-5 -mb-3"} primary={true}>
-                <button className={"text-center h-full w-full cursor-pointer font-semibold text-lg"} type={"submit"}>Post</button>
+                <button className={"text-center h-full w-full cursor-pointer font-semibold text-lg"}
+                        type={"submit"}>Post
+                </button>
               </ButtonChip>
-          </form>
+            </form>
+          }
+          {modalTitle == "Edit Post" &&
+            <form onSubmit={editPost} className={"mb-5 flex flex-col"}>
+
+              <label className={"ml-2"} htmlFor={"PostTitle"}>Title</label>
+              <Input placeholder={"Enter a new title"} className={""} required={true} onChange={handleTitleChange}
+                     name={"title"}/>
+
+              <label className={"ml-2"} htmlFor={"PostTitle"}>Content</label>
+              <textarea placeholder={"Edit the post's content"} className={`bg - white / 20 drop-shadow-[0_0_10px_rgba(255,255,255,1)] border border-white/30 shadow-lg hover:bg-white/35 focus:bg-white/50 backdrop-blur-md transition-all hover:scale-101 focus:scale-102 rounded-3xl px-3 py-3
+                  dark:border-white/10 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35 dark:focus:bg-black/50 `}
+                        onChange={handleContentChange} name={"content"}
+              />
+
+              <label className={"ml-2"} htmlFor={"PostTitle"}>Image URL</label>
+              <Input placeholder={"Edit Image URL"} className={""} required={false} onChange={handleImageUrlChange}
+                     name={"image_url"}/>
+
+
+              <ButtonChip className={"flex items-center justify-center mt-5 -mb-3"} primary={true}>
+                <button className={"text-center h-full w-full cursor-pointer font-semibold text-lg"}
+                        type={"submit"}>Post
+                </button>
+              </ButtonChip>
+            </form>
+          }
         </Modal>
       )}
+
+
 
       <h1 className={"font-semibold dark:text-white text-4xl flex gap-2.5 my-4 "}><FormIcon className={"size-10.5 "} />Forum</h1>
 
@@ -171,7 +209,7 @@ export default function Forum(){
                 </Link>
                 <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
                   <Button icon={ThumbsUpIcon} value={"Like"}/>
-                  <Button  onClick={openEditPost} icon={PencilIcon}/>
+                  <Button  onClick={() => openEditPost(post.id)} icon={PencilIcon}/>
                   <Button icon={TrashIcon}/>
                 </div>
               </Card>

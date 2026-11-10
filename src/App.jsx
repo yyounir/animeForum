@@ -74,14 +74,7 @@ function App() {
             onClick: openAboutProject,
         },
     ]
-
-
-
-
-
-
-
-
+    
   return (
     <>
       <Header title={"AnimeCorner"} openMenu={openMenu} />
