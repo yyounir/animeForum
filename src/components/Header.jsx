@@ -17,7 +17,7 @@ export default function Header({openMenu, title, openAboutProject}){
 
     return (
         <header className="py-3 flex flex-row
-         items-center justify-start
+         items-center justify-start backdrop-blur-3xl
         fixed top-0 left-0 z-10000 w-full select-none">
 
 

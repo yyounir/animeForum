@@ -108,6 +108,20 @@ export default function ViewPost(){
     }
   }
 
+  const incrementPost = async(post) => {
+    const {data, error} = await supabase.from("Forum")
+      .update({likes: (post.likes ?? 0) + 1})
+      .eq("id", post.id)
+      .select("likes")
+      .single();
+
+    if(error){
+      console.error("Failed to update post likes: ", error);
+    }
+
+    setPosts(currentPosts => currentPosts.map(currentPost => currentPost.id === post.id ? {...currentPost, likes: data.likes} : currentPost));
+  }
+
   // Delete Post
   const openDeletePost = (post) => {
     setIdToEdit(post.id);
@@ -203,7 +217,7 @@ export default function ViewPost(){
               <p className={"text-lg"}>{posts[0].content}</p>
 
               <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
-                <Button icon={ThumbsUpIcon} value={"Like"}/>
+                <Button icon={ThumbsUpIcon} value={posts[0].likes ?? 0} onClick={() => incrementPost(posts[0])}/>
                 <Button icon={PencilIcon} onClick={() => openEditPost(posts[0])}/>
                 <Button icon={TrashIcon} onClick={() => openDeletePost(posts[0])} />
               </div>

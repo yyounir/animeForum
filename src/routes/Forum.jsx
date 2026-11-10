@@ -85,6 +85,7 @@ export default function Forum(){
   // Read Posts
   const [posts, setPosts] = useState([]);
 
+
   const fetchPosts = async() => {
     try {
       setIsLoading(true);
@@ -146,6 +147,24 @@ export default function Forum(){
     setIsModalMounted(false);
     setIsModalOpen(false);
     setIsEditingPost(false)
+  }
+
+  const incrementPost = async(post) => {
+    const {data, error} = await supabase
+      .from("Forum")
+      .update({likes: (post.likes ?? 0) + 1})
+      .eq("id", post.id)
+      .select("likes")
+      .single();
+
+    if(error) {
+      console.error("Failed to update post likes:", error);
+      return;
+    }
+
+    setPosts(currentPosts => currentPosts.map(currentPost =>
+      currentPost.id === post.id ? {...currentPost, likes: data.likes} : currentPost
+    ));
   }
 
   // Delete Post
@@ -274,7 +293,7 @@ export default function Forum(){
                   <p>{post.content}</p>
                 </Link>
                 <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
-                  <Button icon={ThumbsUpIcon} value={"Like"}/>
+                  <Button icon={ThumbsUpIcon} value={post.likes ?? 0} onClick={() => incrementPost(post)}/>
                   <Button  onClick={() => openEditPost(post)} icon={PencilIcon}/>
                   <Button onClick={() => openDeletePost(post)} icon={TrashIcon}/>
                 </div>
