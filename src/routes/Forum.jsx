@@ -63,9 +63,9 @@ export default function Forum(){
 
   const createPost = async(event) => {
     event.preventDefault()
-    console.log(postTitle);
-    console.log(postContent);
-    console.log(postImageUrl);
+    // console.log(postTitle);
+    // console.log(postContent);
+    // console.log(postImageUrl);
 
     const {error} = await supabase.from('Forum').insert({title: postTitle, content: postContent, image_url: postImageUrl});
 
@@ -99,6 +99,22 @@ export default function Forum(){
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  // Update Posts
+  const [idToEdit, setIdToEdit] = useState(-1);
+
+  const openEditPost = () => {
+    setModalTile("Edit Post")
+    setModalText([" "])
+    setIsModalMounted(true)
+    setIsModalOpen(true)
+    setModalActions([{
+      primary: null,
+      secondary: "Cancel",
+      primaryOnClick: () => setIsModalOpen(false),
+      secondaryOnClick: () => setIsModalOpen(false),
+    }])
+  }
 
   return (
     <div className={"animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] flex flex-col justify-center items-center select-none text-center"}>
@@ -145,18 +161,18 @@ export default function Forum(){
 
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
           {posts?.map((post, index) =>(
-            <Link to={`/forum/${post.id}`} key={index}>
 
-              <Card title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"} onClick={" "}
+
+              <Card to={`/forum/${post.id}`} title={post.title} className={`w-100 h-fit`} classNameImg={"max-h-50"} onClick={" "}
                    image={post.image_url}>
                 <p>{post.content}</p>
                 <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
                   <Button icon={ThumbsUpIcon} value={"Like"}/>
-                  <Button icon={PencilIcon}/>
+                  <Button  onClick={openEditPost} icon={PencilIcon}/>
                   <Button icon={TrashIcon}/>
                 </div>
               </Card>
-            </Link>
+
             ))
           }
 
