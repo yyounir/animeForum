@@ -181,7 +181,7 @@ export default function Forum(){
 
         </div>
       </div>
-      <div className={"h-175"}>
+      <div className={"h-170"}>
 
       </div>
     </div>
