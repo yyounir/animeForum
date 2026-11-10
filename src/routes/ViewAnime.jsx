@@ -2,6 +2,10 @@ import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import HeaderAlt from "../components/HeaderAlt.jsx";
 import CardAlt from "../components/CardAlt.jsx";
+import Modal from "../components/Modal.jsx";
+import Input from "../components/Input.jsx";
+import ButtonChip from "../components/ButtonChip.jsx";
+import Spinner from "../components/Spinner.jsx";
 
 export default function ViewAnime(){
   const {id} = useParams();
@@ -81,6 +85,7 @@ export default function ViewAnime(){
 
   return (
     <div className={`relative h-screen w-full overflow-hidden text-white bg-[${animeContent?.coverImage?.color}]}`}>
+
       <div
         style={{ backgroundImage: `url(${animeContent?.bannerImage})` }}
         className="absolute inset-0 bg-cover bg-center blur-md scale-105 pointer-events-none opacity-50 animate-[zoomIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]"
