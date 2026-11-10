@@ -87,6 +87,7 @@ export default function Forum(){
 
   const fetchPosts = async() => {
     try {
+      setIsLoading(true);
       const {data} = await supabase.from("Forum").select();
       await sleep(1500);
       if(data){
