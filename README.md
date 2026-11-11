@@ -4,7 +4,7 @@ Submitted by: **Yasir Younus**
 
 This web app: **is your one-stop information to learn more about the Naruto franchise and learn the lore behind it, you can also make some posts about what you love about the anime you watched and the manga you read!**
 
-Time spent: **X** hours spent in total
+Time spent: **71hrs 41mins** hours spent in total. (Source: Wakatime)
 
 ## Required Features
 
