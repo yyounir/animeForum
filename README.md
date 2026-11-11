@@ -72,9 +72,9 @@ The following **additional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
+https://youtu.be/r-L9t_qNLiQ
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with **Windows Snippet Tool**  
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
