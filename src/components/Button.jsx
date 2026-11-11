@@ -1,8 +1,8 @@
 
 
-export default function Button({icon : Icon, rightIcon : RightIcon, value, onClick, type = "button", className, primary=false}) {
+export default function Button({icon : Icon, rightIcon : RightIcon, value, onClick, type = "button", className, primary=false, disabled=false}) {
     return (
-        <button type={type} onClick={onClick} className={`flex gap-2 items-center justify-center hover:scale-104 active:scale-109 transition-all
+        <button type={type} onClick={onClick} disabled={disabled} className={`flex gap-2 items-center justify-center hover:scale-104 active:scale-109 transition-all disabled:cursor-not-allowed disabled:opacity-50
           
           cursor-pointer  rounded-4xl px-3 py-3 backdrop-blur-xs border shadow-lg drop-shadow-[0_0_10px_rgba(255,255,255,1)] dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)]
           ${primary ? 

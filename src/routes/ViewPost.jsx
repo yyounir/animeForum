@@ -49,6 +49,43 @@ export default function ViewPost(){
   const [postImageUrl, setPostImageUrl] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [commentsText, setcommentsText] = useState("");
+  const [commentsError, setcommentsError] = useState("");
+  const [isSubmittingcomments, setIsSubmittingcomments] = useState(false);
+
+  const submitcomments = async(event) => {
+    event.preventDefault();
+    const newcomments = commentsText.trim();
+    const post = posts[0];
+    if(!newcomments || !post || isSubmittingcomments) return;
+
+    setIsSubmittingcomments(true);
+    setcommentsError("");
+    try {
+      const commentss = Array.isArray(post.comments) ? post.comments : [];
+      const {data, error} = await supabase
+        .from("Forum")
+        .update({comments: [...commentss, newcomments]})
+        .eq("id", post.id)
+        .select("comments")
+        .single();
+
+      if(error) {
+        setcommentsError(error.message);
+        return;
+      }
+
+      setPosts(currentPosts => currentPosts.map(currentPost =>
+        currentPost.id === post.id ? {...currentPost, comments: data.comments ?? []} : currentPost
+      ));
+      setcommentsText("");
+    } catch(error) {
+      console.error("Failed to submit comments:", error);
+      setcommentsError(error.message || "Failed to submit comments. Please try again.");
+    } finally {
+      setIsSubmittingcomments(false);
+    }
+  }
 
   // Update Posts
   const [idToEdit, setIdToEdit] = useState(-1);
@@ -71,8 +108,6 @@ export default function ViewPost(){
       secondaryOnClick: () => setIsModalOpen(false),
     }])
   }
-
-
 
   const [isEditingPost, setIsEditingPost] = useState(false);
 
@@ -223,21 +258,31 @@ export default function ViewPost(){
               </div>
 
               <Card title={"Comments"} className={"w-full gap-2 "} >
-                <div className={"flex w-full gap-2  mb-3"}>
-                  <Input placeholder={"Comment..."} className={"w-full"} />
-                  {/*<ButtonChip className={"max-w-fit justify-center items-center px-0"}><button className={"cursor-pointer"}>Comment</button></ButtonChip>*/}
-                  <Button icon={SendHorizonalIcon} primary={true}/>
-                </div>
-                {/*<p>Be the first to comment</p>*/}
-                <Card className={"w-full justify-center items-start shadow-none"}>
-                  <p className={"text-md"}>Agreed!</p>
-                  <p className={"text-xs"}>Some Hobo</p>
-                </Card>
-                <Card className={"w-full justify-center items-start shadow-none"}>
-                  <p className={"text-md"}>NEZUKO CHAAAAAAAAAAAAAAAAAAAAAAAAAAAN!</p>
-                  <p className={"text-xs"}>Zenitsu</p>
-                </Card>
-
+                <form onSubmit={submitcomments} className={"w-full"}>
+                  <div className={"flex w-full gap-2 mb-3"}>
+                    <Input
+                      placeholder={"Comment..."}
+                      className={"w-full"}
+                      value={commentsText}
+                      required={true}
+                      onChange={(event) => setcommentsText(event.target.value)}
+                    />
+                    <Button
+                      icon={SendHorizonalIcon}
+                      primary={true}
+                      type={"submit"}
+                      disabled={isSubmittingcomments || !commentsText.trim()}
+                    />
+                  </div>
+                </form>
+                {commentsError && <p role={"alert"} className={"text-red-600 dark:text-red-400"}>{commentsError}</p>}
+                {Array.isArray(posts[0].comments) && posts[0].comments.length > 0
+                  ? posts[0].comments.map((comments, index) => (
+                    <Card key={`${index}-${comments}`} className={"w-full justify-center items-start shadow-none"}>
+                      <p className={"text-md"}>{comments}</p>
+                    </Card>
+                  ))
+                  : <p>Be the first to comment!</p>}
 
               </Card>
             </div>
