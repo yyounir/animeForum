@@ -84,6 +84,14 @@ export default function Forum(){
 
   // Read Posts
   const [posts, setPosts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("recent");
+
+  const visiblePosts = posts
+    .filter(post => (post.title ?? "").toLowerCase().includes(searchTerm.trim().toLowerCase()))
+    .sort((firstPost, secondPost) => sortOrder === "popular"
+      ? (secondPost.likes ?? 0) - (firstPost.likes ?? 0)
+      : firstPost.id - secondPost.id);
 
 
   const fetchPosts = async() => {
@@ -273,19 +281,27 @@ export default function Forum(){
 
 
 
+
       <h1 className={"font-semibold dark:text-white text-4xl flex gap-2.5 my-4 "}><FormIcon className={"size-10.5 "} />Forum</h1>
 
       <Button icon={PlusIcon} value={"Create Post"} className={"mt-5 drop-shadow-none dark:drop-shadow-none"} primary={true} onClick={openCreatePost}/>
 
       <div className={"mt-2"}>
-        <Input placeholder = "Search a Post..." className={"my-5 w-100"}/>
-
+        <Input placeholder = "Search a Post..." className={"my-2 w-100"} value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}/>
+        <div className={"flex mb-5 justify-center items-center"}>
+          <button type={"button"} aria-pressed={sortOrder === "recent"} onClick={() => setSortOrder("recent")} className={`drop-shadow-[0_0_10px_rgba(255,255,255,1)] animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] select-none items-center hover:scale-101 transition-all border-white/30 backdrop-blur-xs border shadow-lg text-center hover:bg-white/35 px-2.5 py-0.5 rounded-3xl text-black dark:text-white cursor-pointer dark:border-white/10 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35 ${sortOrder === "recent" ? "bg-white/40 dark:bg-black/40" : "bg-white/20 dark:bg-black/20"}`}>
+            Recent
+          </button>
+          <button type={"button"} aria-pressed={sortOrder === "popular"} onClick={() => setSortOrder("popular")} className={`drop-shadow-[0_0_10px_rgba(255,255,255,1)] animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] select-none items-center hover:scale-101 transition-all border-white/30 backdrop-blur-xs border shadow-lg text-center hover:bg-white/35 px-2.5 py-0.5 rounded-3xl text-black dark:text-white cursor-pointer dark:border-white/10 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35 ${sortOrder === "popular" ? "bg-white/40 dark:bg-black/40" : "bg-white/20 dark:bg-black/20"}`}>
+            Popular
+          </button>
+        </div>
         {isLoading ? <div className={"mt-3"}><Spinner size={"sm"} text={"Fetching Posts..."}/></div>: ""}
 
         <div className={"flex flex-wrap gap-4 justify-center items-center"}>
-          {posts?.map((post, index) =>(
+          {visiblePosts.map((post) =>(
 
-            <div key={index}>
+            <div key={post.id}>
               <Card classNameImg={"max-h-50"} className={"p-0"} onClick={" "}>
                 <Link className={"w-full h-full"} to={`/forum/${post.id}`}>
                   {post.image_url && <img src={post.image_url} className={`rounded-3xl w-[400px] h-[200px] object-cover object-center `}/>}
