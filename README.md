@@ -63,16 +63,18 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you added to improve the site's functionality!
+* [x] Added Tailwind CSS framework for easier styling
+* [x] Added Anilist API with GraphQL query 
+* [x] Added homepage displaying the site's features
+* [x] Added functionality to edit, delete posts when viewing posts on a separate link
+* [x] Developed a custom loading spinner with pure css and tailwind with different sizes
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  
+GIF created with **Windows Snippet Tool**  
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
@@ -80,7 +82,8 @@ GIF created with ...
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+[//]: # (Describe any challenges encountered while building the app.)
+The UI kept showing bleeding shadows when different parts of the element is being hovered on, including browser tabs.
 
 ## License
 
