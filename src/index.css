@@ -15,6 +15,7 @@ body {
 	 /* background-color: rgb(240, 240, 240); */
 	/*background-color: #ffdcc6;*/
 	background: transparent;
+  /* background-color: black; */
 }
 
 #root {
@@ -48,7 +49,11 @@ body {
 @media (prefers-color-scheme: dark) {
 	body {
 		/*background-color: #3d1700;*/
-		background-color: transparent;
+		/* background-color: white; */
+    /* background-image: url("https://static0.cbrimages.com/wordpress/wp-content/uploads/2025/08/c24d31c2-c145-473f-916a-07d035351c34.jpeg");
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;  */
 	}
 
 	html {
@@ -141,4 +146,28 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.liquid-glass {
+  position: relative;
+  overflow: hidden;
+  filter: none !important;
+  backdrop-filter: blur(26px) saturate(185%);
+  box-shadow:
+    inset 0 1px 0.5px rgba(255, 255, 255, 0.72),
+    inset 0 10px 24px -8px rgba(255, 255, 255, 0.22),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.38);
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.75), rgba(255,255,255,0.05) 65%, rgba(255,255,255,0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
