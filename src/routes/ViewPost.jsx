@@ -262,7 +262,7 @@ bg-gradient-to-br from-white/20 via-white/[0.08] to-white/[0.11] dark:from-black
                 <Button icon={TrashIcon} onClick={() => openDeletePost(posts[0])} />
               </div>
 
-              <Card title={"Comments"} className={"w-full gap-2 "} >
+              <Card title={"Comments"} className={"w-full gap-2"} >
                 <form onSubmit={submitcomments} className={"w-full"}>
                   <div className={"flex w-full gap-2 mb-3"}>
                     <Input
@@ -283,7 +283,7 @@ bg-gradient-to-br from-white/20 via-white/[0.08] to-white/[0.11] dark:from-black
                 {commentsError && <p role={"alert"} className={"text-red-600 dark:text-red-400"}>{commentsError}</p>}
                 {Array.isArray(posts[0].comments) && posts[0].comments.length > 0
                   ? posts[0].comments.map((comments, index) => (
-                    <Card key={`${index}-${comments}`} className={"w-full justify-center items-start shadow-none"}>
+                    <Card key={`${index}-${comments}`} className={"w-full mx-2 justify-center items-start shadow-none"}>
                       <p className={"text-md"}>{comments}</p>
                     </Card>
                   ))
