@@ -8,7 +8,7 @@ export default function HeaderAlt({openMenu, title, back}){
 
     return (
         <header className="py-3 flex flex-row
-         items-center justify-start  backdrop-blur-3xl translate-z-0 will-change-[transform,backdrop-filter]
+         items-center justify-start  glass-strong backdrop-blur-md overflow-hidden transform-gpu
         fixed top-0 left-0 z-10000 w-full">
 
             <div className="flex flex-row ml-5 w-[50%] gap-2 items-center animate-[zoomIn_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards]">
