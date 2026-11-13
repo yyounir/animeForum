@@ -5,12 +5,24 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 import Header from "./components/Header.jsx";
 import {GitHubIcon} from "./components/GitHubIcon.jsx";
-import {InfoIcon} from "lucide-react";
+import {InfoIcon, MoonIcon} from "lucide-react";
 import Modal from "./components/Modal.jsx";
 import Menu from "./components/Menu.jsx";
 import {Outlet} from "react-router";
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("animeforum-theme")
+    return savedTheme === null
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches
+      : savedTheme === "dark"
+  })
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDarkMode)
+    localStorage.setItem("animeforum-theme", isDarkMode ? "dark" : "light")
+  }, [isDarkMode])
+
   // Modal
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isModalMounted, setIsModalMounted] = useState(false)
@@ -62,12 +74,18 @@ function App() {
   const menuOptions = [
         {
             id: 1,
+            icon: MoonIcon,
+            option: isDarkMode ? "Turn off Dark Mode" : "Turn on Dark Mode",
+            onClick: () => setIsDarkMode((darkMode) => !darkMode),
+        },
+        {
+            id: 2,
             icon: GitHubIcon,
             option: "View Projects",
             link: "https://github.com/yyounir"
         },
         {
-            id: 2,
+            id: 3,
             icon: InfoIcon,
             option: "About Project",
             link: null,

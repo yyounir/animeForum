@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
 	min-height: 100%;
 	background-color: white;
@@ -46,27 +48,16 @@ body {
 		0 0 40px rgba(255, 255, 255, 0.473);
 }
 
-@media (prefers-color-scheme: dark) {
-	body {
-		/*background-color: #3d1700;*/
-		/* background-color: white; */
-    /* background-image: url("https://static0.cbrimages.com/wordpress/wp-content/uploads/2025/08/c24d31c2-c145-473f-916a-07d035351c34.jpeg");
-    background-size: cover;
-    background-position: center; 
-    background-repeat: no-repeat;  */
-	}
+html.dark {
+	background-color: black;
+}
 
-	html {
-		background-color: black;
-	}
-
-	.textglow {
-		text-shadow:
+.dark .textglow {
+	text-shadow:
 		0 0 5px rgba(0, 0, 0, 0.473),
 		0 0 10px rgba(0, 0, 0, 0.473),
 		0 0 20px rgba(0, 0, 0, 0.473),
 		0 0 40px rgba(0, 0, 0, 0.473);
-	}
 }
 
 @keyframes zoomIn {
