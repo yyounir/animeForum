@@ -1,5 +1,5 @@
 import HeaderAlt from "../components/HeaderAlt.jsx";
-import {useParams} from "react-router";
+import {Link, useParams} from "react-router";
 
 import {supabase} from "../client.js";
 import {useState, useEffect} from "react";
@@ -13,6 +13,7 @@ import Modal from "../components/Modal.jsx";
 
 export default function ViewPost(){
   const [posts, setPosts] = useState([]);
+  const [repostedPost, setRepostedPost] = useState(null);
   const {id} = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,23 @@ export default function ViewPost(){
           console.error("Failed to fetch post:", error);
           return;
         }
-        setPosts(data ?? []);
+        const post = data?.[0] ?? null;
+        setPosts(post ? [post] : []);
+        setRepostedPost(null);
+
+        if(post?.repost_id) {
+          const {data: referencedPost, error: referenceError} = await supabase
+            .from("Forum")
+            .select()
+            .eq("id", post.repost_id)
+            .maybeSingle();
+
+          if(referenceError) {
+            console.error("Failed to fetch referenced post:", referenceError);
+          } else {
+            setRepostedPost(referencedPost);
+          }
+        }
       }
       catch(error){
         console.error("Failed to fetch at", error);
@@ -255,6 +272,23 @@ bg-gradient-to-br from-white/20 via-white/[0.08] to-white/[0.11] dark:from-black
               {posts[0].image_url ? <img src={posts[0].image_url} alt={posts[0].title} className={"rounded-3xl max-h-70 mb-5"}/> : ""}
               <h2 className={"text-3xl font-bold"}>{posts[0].title}</h2>
               <p className={"text-lg"}>{posts[0].content}</p>
+
+              {posts[0].repost_id && (
+                <Card title={"Referenced post"} className={"w-full mt-5"}>
+                  {repostedPost ? (
+                    <Link to={`/forum/${repostedPost.id}`} className={"flex flex-col items-center"}>
+                      {repostedPost.image_url && (
+                        <img src={repostedPost.image_url} alt={repostedPost.title}
+                             className={"rounded-3xl max-h-50 my-3"}/>
+                      )}
+                      <p className={"font-semibold"}>Post #{repostedPost.id}: {repostedPost.title}</p>
+                      {repostedPost.content && <p>{repostedPost.content}</p>}
+                    </Link>
+                  ) : (
+                    <p>The referenced post could not be loaded.</p>
+                  )}
+                </Card>
+              )}
 
               <div className={"flex flex-row gap-3 my-3 justify-center items-center"}>
                 <Button icon={ThumbsUpIcon} value={posts[0].likes ?? 0} onClick={() => incrementPost(posts[0])}/>

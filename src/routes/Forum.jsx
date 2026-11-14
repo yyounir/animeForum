@@ -32,7 +32,9 @@ export default function Forum(){
     setPostTitle("");
     setPostContent("");
     setPostImageUrl("");
+    setRepostPostId("");
     setErrorMessage("");
+    setIsCreatingPost(false);
     setModalTile("Create Post")
     setModalText([" "])
     setIsModalMounted(true)
@@ -50,6 +52,8 @@ export default function Forum(){
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
   const [postImageUrl, setPostImageUrl] = useState("");
+  const [repostPostId, setRepostPostId] = useState("");
+  const [isCreatingPost, setIsCreatingPost] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -66,20 +70,60 @@ export default function Forum(){
   }
 
   const createPost = async(event) => {
-    event.preventDefault()
-    // console.log(postTitle);
-    // console.log(postContent);
-    // console.log(postImageUrl);
+    event.preventDefault();
+    if(isCreatingPost) return;
+    setIsCreatingPost(true);
+    setErrorMessage("");
 
-    const {error} = await supabase.from('Forum').insert({title: postTitle, content: postContent, image_url: postImageUrl});
+    try {
+      let referencedPostId = null;
+      const enteredPostId = repostPostId.trim();
 
-    if(error) {
-      setErrorMessage(error.message);
-      return
+      if(enteredPostId) {
+        const parsedPostId = Number(enteredPostId);
+        if(!Number.isSafeInteger(parsedPostId) || parsedPostId <= 0) {
+          setErrorMessage("Enter a valid post ID to repost.");
+          return;
+        }
+
+        const {data: referencedPost, error: referenceError} = await supabase
+          .from("Forum")
+          .select("id")
+          .eq("id", parsedPostId)
+          .maybeSingle();
+
+        if(referenceError) {
+          setErrorMessage(referenceError.message);
+          return;
+        }
+        if(!referencedPost) {
+          setErrorMessage(`Post #${parsedPostId} could not be found.`);
+          return;
+        }
+        referencedPostId = referencedPost.id;
+      }
+
+      const {error} = await supabase.from("Forum").insert({
+        title: postTitle,
+        content: postContent,
+        image_url: postImageUrl,
+        repost_id: referencedPostId,
+      });
+
+      if(error) {
+        setErrorMessage(error.message);
+        return;
+      }
+
+      await fetchPosts();
+      setIsModalMounted(false);
+      setIsModalOpen(false);
+    } catch(error) {
+      console.error("Failed to create post:", error);
+      setErrorMessage(error.message || "Failed to create post. Please try again.");
+    } finally {
+      setIsCreatingPost(false);
     }
-    fetchPosts();
-    setIsModalMounted(false)
-    setIsModalOpen(false)
   }
 
   // Read Posts
@@ -219,22 +263,27 @@ export default function Forum(){
             <form onSubmit={createPost} className={"mb-5 flex flex-col"}>
 
               <label className={"ml-2"} htmlFor={"PostTitle"}>Title</label>
-              <Input placeholder={"Post title"} className={""} required={true} onChange={handleTitleChange}
+              <Input id={"PostTitle"} placeholder={"Post title"} value={postTitle} className={""} required={true} onChange={handleTitleChange}
                      name={"title"}/>
 
               <label className={"ml-2"} htmlFor={"PostTitle"}>Content</label>
               <textarea placeholder={"What do you want your post to be about?"} className={`bg - white / 20 drop-shadow-[0_0_10px_rgba(255,255,255,1)] border border-white/30 shadow-lg hover:bg-white/35 focus:bg-white/50 backdrop-blur-md transition-all hover:scale-101 focus:scale-102 rounded-3xl px-3 py-3
                   dark:border-white/10 dark:bg-black/20 dark:text-white dark:drop-shadow-[0_0_10px_rgba(0,0,0,1)] dark:hover:bg-black/35 dark:focus:bg-black/50 `}
-                        onChange={handleContentChange} name={"content"}
+                        onChange={handleContentChange} value={postContent} name={"content"}
               />
 
               <label className={"ml-2"} htmlFor={"PostTitle"}>Image URL</label>
-              <Input placeholder={"Image URL"} className={""} required={false} onChange={handleImageUrlChange}
+              <Input id={"PostImageUrl"} placeholder={"Image URL"} value={postImageUrl} className={""} required={false} onChange={handleImageUrlChange}
                      name={"image_url"}/>
 
+              <label className={"ml-2"} htmlFor={"RepostPostId"}>Repost post ID (optional)</label>
+              <Input id={"RepostPostId"} placeholder={"Enter a post ID to reference"} value={repostPostId}
+                     className={""} required={false} onChange={(event) => setRepostPostId(event.target.value)}
+                     name={"repost_id"}/>
 
+              {errorMessage && <p role={"alert"} className={"mt-3 text-red-600 dark:text-red-400"}>{errorMessage}</p>}
               <ButtonChip className={"flex items-center justify-center mt-5 -mb-3"} primary={true}>
-                <button className={"text-center h-full w-full cursor-pointer font-semibold text-lg"}
+                <button disabled={isCreatingPost} className={"text-center h-full w-full cursor-pointer font-semibold text-lg disabled:cursor-not-allowed"}
                         type={"submit"}>Post
                 </button>
               </ButtonChip>

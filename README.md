@@ -52,6 +52,7 @@ The following **optional** features are implemented:
 - [ ] Users can repost a previous post by referencing its post ID. On the post page of the new post
   - Users can repost a previous post by referencing its post ID
   - On the post page of the new post, the referenced post is displayed and linked, creating a thread
+  - Apply `supabase/migrations/20261113223000_add_forum_repost_id.sql` to the Supabase database to add the reference column
 - [x] Users can customize the interface
   - e.g., selecting the color scheme or showing the content and image of each post on the home feed
 - [ ] Users can add more characterics to their posts
